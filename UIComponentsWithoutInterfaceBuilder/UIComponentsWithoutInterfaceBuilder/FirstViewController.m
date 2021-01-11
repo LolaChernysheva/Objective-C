@@ -14,8 +14,6 @@
 
 @implementation FirstViewController
 
-
-
 - (void) changeViewColor {
     
    // self.view.backgroundColor = [UIColor darkGrayColor] ? [UIColor darkGrayColor] : [UIColor greenColor];
@@ -84,6 +82,13 @@
     myProgressView.tintColor = [UIColor blueColor];
     myProgressView.progress = 0.5;
     [self.view addSubview: myProgressView];
+    
+    UIImageView *myImage = [[UIImageView alloc] initWithFrame:CGRectMake(myProgressView.frame.origin.x, myProgressView.frame.origin.y + myProgressView.frame.size.height + 5, 200, 90)];
+    myImage.image = [UIImage imageNamed: @"IMG_0989"];
+    myImage.contentMode = UIViewContentModeScaleAspectFit;
+    myImage.backgroundColor = [UIColor systemYellowColor];
+    [self.view addSubview:myImage];
+    
     
     
     
