@@ -21,6 +21,7 @@
 }
 - (void) viewWillAppear: (BOOL) animated {
     [super viewWillAppear:animated];
+    
     UIView *myRedView = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x + 30, self.view.frame.origin.y + 50, 200, 110)];
     myRedView.backgroundColor = [UIColor redColor];
     [self.view addSubview: myRedView];

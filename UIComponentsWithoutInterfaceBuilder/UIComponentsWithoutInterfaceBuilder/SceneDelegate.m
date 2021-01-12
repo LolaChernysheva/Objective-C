@@ -9,6 +9,7 @@
 #import "SceneDelegate.h"
 #import "AppDelegate.h"
 #import "FirstViewController.h"
+#import "MainViewController.h"
 
 @interface SceneDelegate ()
 
@@ -24,7 +25,10 @@
     //делаем window видимым
     [self.window makeKeyAndVisible];
     FirstViewController *firstController = [[FirstViewController alloc] init];
-    self.window.rootViewController = firstController;
+    MainViewController *mainViewController = [[MainViewController alloc]init];
+    self.window.rootViewController =mainViewController;
+    
+    //self.window.rootViewController = firstController;
     UIWindowScene *windowScene = (UIWindowScene *)scene;
     [self.window setWindowScene:windowScene];
     firstController.view.backgroundColor = [UIColor greenColor];
