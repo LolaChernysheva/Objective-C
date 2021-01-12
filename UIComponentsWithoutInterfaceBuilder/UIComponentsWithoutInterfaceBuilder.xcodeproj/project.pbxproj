@@ -14,6 +14,11 @@
 		D3087BDE2595FA7A0037383B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3087BDD2595FA7A0037383B /* Assets.xcassets */; };
 		D3087BE12595FA7A0037383B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3087BDF2595FA7A0037383B /* LaunchScreen.storyboard */; };
 		D3087BE42595FA7A0037383B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D3087BE32595FA7A0037383B /* main.m */; };
+		D3E9B5E525ACA1BE009594C9 /* Copy of airports.json in Resources */ = {isa = PBXBuildFile; fileRef = D3E9B5E225ACA1BE009594C9 /* Copy of airports.json */; };
+		D3E9B5E625ACA1BE009594C9 /* Copy of cities.json in Resources */ = {isa = PBXBuildFile; fileRef = D3E9B5E325ACA1BE009594C9 /* Copy of cities.json */; };
+		D3E9B5E725ACA1BE009594C9 /* Copy of countries.json in Resources */ = {isa = PBXBuildFile; fileRef = D3E9B5E425ACA1BE009594C9 /* Copy of countries.json */; };
+		D3E9B5EA25ACA373009594C9 /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E9B5E925ACA373009594C9 /* Country.m */; };
+		D3E9B5ED25ACBA28009594C9 /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E9B5EC25ACBA28009594C9 /* City.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +34,13 @@
 		D3087BE02595FA7A0037383B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3087BE22595FA7A0037383B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3087BE32595FA7A0037383B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D3E9B5E225ACA1BE009594C9 /* Copy of airports.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Copy of airports.json"; sourceTree = "<group>"; };
+		D3E9B5E325ACA1BE009594C9 /* Copy of cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Copy of cities.json"; sourceTree = "<group>"; };
+		D3E9B5E425ACA1BE009594C9 /* Copy of countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Copy of countries.json"; sourceTree = "<group>"; };
+		D3E9B5E825ACA373009594C9 /* Country.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Country.h; sourceTree = "<group>"; };
+		D3E9B5E925ACA373009594C9 /* Country.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Country.m; sourceTree = "<group>"; };
+		D3E9B5EB25ACBA28009594C9 /* City.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
+		D3E9B5EC25ACBA28009594C9 /* City.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = City.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +73,7 @@
 		D3087BCD2595FA770037383B /* UIComponentsWithoutInterfaceBuilder */ = {
 			isa = PBXGroup;
 			children = (
+				D3E9B5E125ACA1BE009594C9 /* Data */,
 				D3087BCE2595FA770037383B /* AppDelegate.h */,
 				D3087BCF2595FA770037383B /* AppDelegate.m */,
 				D3087BD12595FA770037383B /* SceneDelegate.h */,
@@ -72,8 +85,22 @@
 				D3087BE22595FA7A0037383B /* Info.plist */,
 				D3087BE32595FA7A0037383B /* main.m */,
 				D3087BDA2595FA770037383B /* UIComponentsWithoutInterfaceBuilder.xcdatamodeld */,
+				D3E9B5E825ACA373009594C9 /* Country.h */,
+				D3E9B5E925ACA373009594C9 /* Country.m */,
+				D3E9B5EB25ACBA28009594C9 /* City.h */,
+				D3E9B5EC25ACBA28009594C9 /* City.m */,
 			);
 			path = UIComponentsWithoutInterfaceBuilder;
+			sourceTree = "<group>";
+		};
+		D3E9B5E125ACA1BE009594C9 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				D3E9B5E225ACA1BE009594C9 /* Copy of airports.json */,
+				D3E9B5E325ACA1BE009594C9 /* Copy of cities.json */,
+				D3E9B5E425ACA1BE009594C9 /* Copy of countries.json */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,7 +160,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3E9B5E625ACA1BE009594C9 /* Copy of cities.json in Resources */,
 				D3087BE12595FA7A0037383B /* LaunchScreen.storyboard in Resources */,
+				D3E9B5E725ACA1BE009594C9 /* Copy of countries.json in Resources */,
+				D3E9B5E525ACA1BE009594C9 /* Copy of airports.json in Resources */,
 				D3087BDE2595FA7A0037383B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -149,6 +179,8 @@
 				D3087BDC2595FA770037383B /* UIComponentsWithoutInterfaceBuilder.xcdatamodeld in Sources */,
 				D3087BD62595FA770037383B /* FirstViewController.m in Sources */,
 				D3087BD02595FA770037383B /* AppDelegate.m in Sources */,
+				D3E9B5EA25ACA373009594C9 /* Country.m in Sources */,
+				D3E9B5ED25ACBA28009594C9 /* City.m in Sources */,
 				D3087BD32595FA770037383B /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
