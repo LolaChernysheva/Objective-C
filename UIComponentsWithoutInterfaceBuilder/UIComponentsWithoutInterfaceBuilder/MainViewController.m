@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "DataManager.h"
+#import "FirstViewController.h"
 
 @interface MainViewController ()
 
@@ -16,6 +17,8 @@
 @implementation MainViewController
 
 - (void) changeViewColor {
+    FirstViewController *firstController = [[FirstViewController alloc] init];
+    [self.navigationController pushViewController:firstController animated:YES];
     
    // self.view.backgroundColor = [UIColor darkGrayColor] ? [UIColor darkGrayColor] : [UIColor greenColor];
     self.view.backgroundColor = [UIColor darkGrayColor];

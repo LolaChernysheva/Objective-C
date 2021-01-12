@@ -24,9 +24,13 @@
     self.window = [[UIWindow alloc] initWithFrame:windowFrame];
     //делаем window видимым
     [self.window makeKeyAndVisible];
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] init];
     FirstViewController *firstController = [[FirstViewController alloc] init];
     MainViewController *mainViewController = [[MainViewController alloc]init];
-    self.window.rootViewController =mainViewController;
+    [navigationController pushViewController:mainViewController animated:YES];
+    self.window.rootViewController = navigationController;
+    
     
     //self.window.rootViewController = firstController;
     UIWindowScene *windowScene = (UIWindowScene *)scene;
