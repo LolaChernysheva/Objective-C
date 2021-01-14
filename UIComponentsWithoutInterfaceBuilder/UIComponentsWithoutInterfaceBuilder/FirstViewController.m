@@ -90,9 +90,6 @@
     myImage.backgroundColor = [UIColor systemYellowColor];
     [self.view addSubview:myImage];
     
-    
-    
-    
 }
 
 - (void)viewDidLoad {

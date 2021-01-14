@@ -16,7 +16,8 @@
 
 @implementation MainViewController
 
-- (void) changeViewColor {
+- (void) changeViewColor
+{
     FirstViewController *firstController = [[FirstViewController alloc] init];
     [self.navigationController pushViewController:firstController animated:YES];
     
