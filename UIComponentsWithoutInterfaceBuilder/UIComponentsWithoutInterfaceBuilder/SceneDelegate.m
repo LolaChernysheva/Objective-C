@@ -25,17 +25,20 @@
     //делаем window видимым
     [self.window makeKeyAndVisible];
     
+    
+    
     UINavigationController *navigationController = [[UINavigationController alloc] init];
-    FirstViewController *firstController = [[FirstViewController alloc] init];
+    //FirstViewController *firstController = [[FirstViewController alloc] init];
     MainViewController *mainViewController = [[MainViewController alloc]init];
     [navigationController pushViewController:mainViewController animated:YES];
     self.window.rootViewController = navigationController;
+    //UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:navigationController];
     
     
     //self.window.rootViewController = firstController;
     UIWindowScene *windowScene = (UIWindowScene *)scene;
     [self.window setWindowScene:windowScene];
-    firstController.view.backgroundColor = [UIColor greenColor];
+    //firstController.view.backgroundColor = [UIColor greenColor];
     
     
     
