@@ -12,6 +12,7 @@
 
 @property (strong, nonnull) UITableView *tableView;
 
+
 @end
 
 @implementation FirstViewController
@@ -23,6 +24,7 @@
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
+
 
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

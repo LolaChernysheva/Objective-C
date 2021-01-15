@@ -10,6 +10,8 @@
 #import "CustomTableViewCell.h"
 
 @interface TableViewController ()
+@property (strong, nonnull) NSMutableArray *elements;
+
 
 @end
 
@@ -17,30 +19,36 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    _elements = [NSMutableArray arrayWithObjects:@1,@2,@3,@4,@5, nil];
 
 }
 
-#pragma mark - Table view data source
 
-
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    return 1;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _elements.count;
 }
 
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     CustomTableViewCell *cell = [tableView cellForRowAtIndexPath: indexPath];
-    
-    if (!cell) {
+    if (!cell)
+    {
         cell = [[CustomTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellIdentifier"];
     }
     cell.leftLabel.text = @"LeftLabel";
     cell.rightLabel.text = @"RightLabel";
     
     return cell;
+}
+//  Удаление ячейки
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //удаление элементов из массива по индексу
+    [_elements removeObjectAtIndex:indexPath.row];
+    //удаление строки из таблицы
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    
 }
 
 
@@ -52,17 +60,6 @@
 }
 */
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
 
 /*
 // Override to support rearranging the table view.
