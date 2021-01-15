@@ -9,6 +9,7 @@
 #import "SceneDelegate.h"
 #import "AppDelegate.h"
 #import "FirstViewController.h"
+#import "TableViewController.h"
 
 @interface SceneDelegate ()
 
@@ -23,13 +24,14 @@
     [self.window makeKeyAndVisible];
     
     FirstViewController *firstViewController = [[FirstViewController alloc]init];
-    self.window.rootViewController = firstViewController;
+    //self.window.rootViewController = firstViewController;
     UIWindowScene *windowScene = (UIWindowScene*)scene;
     [self.window setWindowScene:windowScene];
     
     firstViewController.view.backgroundColor = [UIColor yellowColor];
     
-    
+    TableViewController *tableViewController = [[TableViewController alloc]init];
+    self.window.rootViewController = tableViewController;
 
 }
 

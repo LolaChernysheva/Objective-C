@@ -13,6 +13,8 @@
 		D319B98625B0D77E00320B9A /* TableView.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D319B98425B0D77E00320B9A /* TableView.xcdatamodeld */; };
 		D319B98825B0D78800320B9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D319B98725B0D78800320B9A /* Assets.xcassets */; };
 		D319B98E25B0D78800320B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D319B98D25B0D78800320B9A /* main.m */; };
+		D319B99625B19D1600320B9A /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D319B99525B19D1600320B9A /* TableViewController.m */; };
+		D319B99925B19EB200320B9A /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D319B99825B19EB200320B9A /* CustomTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,10 @@
 		D319B98725B0D78800320B9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D319B98C25B0D78800320B9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D319B98D25B0D78800320B9A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D319B99425B19D1600320B9A /* TableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		D319B99525B19D1600320B9A /* TableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		D319B99725B19EB200320B9A /* CustomTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
+		D319B99825B19EB200320B9A /* CustomTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +75,10 @@
 				D319B98C25B0D78800320B9A /* Info.plist */,
 				D319B98D25B0D78800320B9A /* main.m */,
 				D319B98425B0D77E00320B9A /* TableView.xcdatamodeld */,
+				D319B99425B19D1600320B9A /* TableViewController.h */,
+				D319B99525B19D1600320B9A /* TableViewController.m */,
+				D319B99725B19EB200320B9A /* CustomTableViewCell.h */,
+				D319B99825B19EB200320B9A /* CustomTableViewCell.m */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -142,6 +152,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D319B98E25B0D78800320B9A /* main.m in Sources */,
+				D319B99925B19EB200320B9A /* CustomTableViewCell.m in Sources */,
+				D319B99625B19D1600320B9A /* TableViewController.m in Sources */,
 				D319B98025B0D77E00320B9A /* FirstViewController.m in Sources */,
 				D319B98625B0D77E00320B9A /* TableView.xcdatamodeld in Sources */,
 				D319B97A25B0D77E00320B9A /* AppDelegate.m in Sources */,
