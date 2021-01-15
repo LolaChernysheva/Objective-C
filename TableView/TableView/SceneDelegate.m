@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "FirstViewController.h"
 #import "TableViewController.h"
+#import "ReusingCellsTableViewController.h"
 
 @interface SceneDelegate ()
 
@@ -31,7 +32,8 @@
     firstViewController.view.backgroundColor = [UIColor yellowColor];
     
     TableViewController *tableViewController = [[TableViewController alloc]init];
-    self.window.rootViewController = tableViewController;
+    ReusingCellsTableViewController *reusingCellsTableViewController = [[ReusingCellsTableViewController alloc]init];
+    self.window.rootViewController = reusingCellsTableViewController;
 
 }
 

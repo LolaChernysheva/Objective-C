@@ -15,6 +15,7 @@
 		D319B98E25B0D78800320B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D319B98D25B0D78800320B9A /* main.m */; };
 		D319B99625B19D1600320B9A /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D319B99525B19D1600320B9A /* TableViewController.m */; };
 		D319B99925B19EB200320B9A /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D319B99825B19EB200320B9A /* CustomTableViewCell.m */; };
+		D319B99C25B1C8E600320B9A /* ReusingCellsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D319B99B25B1C8E600320B9A /* ReusingCellsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,8 @@
 		D319B99525B19D1600320B9A /* TableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		D319B99725B19EB200320B9A /* CustomTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
 		D319B99825B19EB200320B9A /* CustomTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
+		D319B99A25B1C8E600320B9A /* ReusingCellsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReusingCellsTableViewController.h; sourceTree = "<group>"; };
+		D319B99B25B1C8E600320B9A /* ReusingCellsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReusingCellsTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +82,8 @@
 				D319B99525B19D1600320B9A /* TableViewController.m */,
 				D319B99725B19EB200320B9A /* CustomTableViewCell.h */,
 				D319B99825B19EB200320B9A /* CustomTableViewCell.m */,
+				D319B99A25B1C8E600320B9A /* ReusingCellsTableViewController.h */,
+				D319B99B25B1C8E600320B9A /* ReusingCellsTableViewController.m */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -152,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D319B98E25B0D78800320B9A /* main.m in Sources */,
+				D319B99C25B1C8E600320B9A /* ReusingCellsTableViewController.m in Sources */,
 				D319B99925B19EB200320B9A /* CustomTableViewCell.m in Sources */,
 				D319B99625B19D1600320B9A /* TableViewController.m in Sources */,
 				D319B98025B0D77E00320B9A /* FirstViewController.m in Sources */,
