@@ -44,6 +44,7 @@
     }];
 }
 
+//формирование строки запроса
 - (void)ticketsWithRequest:(SearchRequest)request withCompletion:(void (^)(NSArray *tickets))completion {
     NSString *urlString = [NSString stringWithFormat:@"%@?%@&token=%@", API_URL_CHEAP, SearchRequestQuery(request), API_TOKEN];
     [self load:urlString withCompletion:^(id  _Nullable result) {

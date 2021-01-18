@@ -16,6 +16,8 @@
 		D3087BE42595FA7A0037383B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D3087BE32595FA7A0037383B /* main.m */; };
 		D3131F2125B5DE5A00B2EB90 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D3131F2025B5DE5A00B2EB90 /* APIManager.m */; };
 		D3131F2425B6260300B2EB90 /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = D3131F2325B6260300B2EB90 /* Ticket.m */; };
+		D3131F2725B6280100B2EB90 /* TicketTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3131F2625B6280100B2EB90 /* TicketTableViewCell.m */; };
+		D3131F2A25B629FF00B2EB90 /* TicketsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3131F2925B629FF00B2EB90 /* TicketsViewController.m */; };
 		D319B96125AE0D1800320B9A /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D319B96025AE0D1800320B9A /* DataManager.m */; };
 		D319B96625AE0EF900320B9A /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = D319B96325AE0EF900320B9A /* countries.json */; };
 		D319B96725AE0EF900320B9A /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = D319B96425AE0EF900320B9A /* cities.json */; };
@@ -44,6 +46,10 @@
 		D3131F2025B5DE5A00B2EB90 /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		D3131F2225B6260300B2EB90 /* Ticket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ticket.h; sourceTree = "<group>"; };
 		D3131F2325B6260300B2EB90 /* Ticket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Ticket.m; sourceTree = "<group>"; };
+		D3131F2525B6280100B2EB90 /* TicketTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TicketTableViewCell.h; sourceTree = "<group>"; };
+		D3131F2625B6280100B2EB90 /* TicketTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TicketTableViewCell.m; sourceTree = "<group>"; };
+		D3131F2825B629FF00B2EB90 /* TicketsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TicketsViewController.h; sourceTree = "<group>"; };
+		D3131F2925B629FF00B2EB90 /* TicketsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TicketsViewController.m; sourceTree = "<group>"; };
 		D319B95F25AE0D1800320B9A /* DataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		D319B96025AE0D1800320B9A /* DataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		D319B96325AE0EF900320B9A /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
@@ -119,6 +125,10 @@
 				D3131F2025B5DE5A00B2EB90 /* APIManager.m */,
 				D3131F2225B6260300B2EB90 /* Ticket.h */,
 				D3131F2325B6260300B2EB90 /* Ticket.m */,
+				D3131F2525B6280100B2EB90 /* TicketTableViewCell.h */,
+				D3131F2625B6280100B2EB90 /* TicketTableViewCell.m */,
+				D3131F2825B629FF00B2EB90 /* TicketsViewController.h */,
+				D3131F2925B629FF00B2EB90 /* TicketsViewController.m */,
 			);
 			path = UIComponentsWithoutInterfaceBuilder;
 			sourceTree = "<group>";
@@ -216,8 +226,10 @@
 				D3E9B5F025ADB10F009594C9 /* Airport.m in Sources */,
 				D3131F2125B5DE5A00B2EB90 /* APIManager.m in Sources */,
 				D3E9B5ED25ACBA28009594C9 /* City.m in Sources */,
+				D3131F2A25B629FF00B2EB90 /* TicketsViewController.m in Sources */,
 				D319B96125AE0D1800320B9A /* DataManager.m in Sources */,
 				D3087BD32595FA770037383B /* SceneDelegate.m in Sources */,
+				D3131F2725B6280100B2EB90 /* TicketTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,8 @@
 #import "FirstViewController.h"
 #import "PlaceViewController.h"
 #import "APIManager.h"
+#import "Ticket.h"
+#import "TicketsViewController.h"
 
 @interface MainViewController () <PlaceViewControllerDelegate>
 
@@ -76,6 +78,7 @@
     _searchButton.backgroundColor = [UIColor blackColor];
     _searchButton.layer.cornerRadius = 8.0;
     _searchButton.titleLabel.font = [UIFont systemFontOfSize:20.0 weight:UIFontWeightBold];
+    [_searchButton addTarget:self action:@selector(searchButtonDidTap:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_searchButton];
     
     //подписали класс на события, которые хранятся в константе kDataManagerLoadDataDidComplete
@@ -83,6 +86,20 @@
     //при получении такого уведомления будет вызываться метод cityForCurrentIP
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataLoadedSuccessfully) name:kDataManagerLoadDataDidComplete object:nil];
 }
+
+- (void)searchButtonDidTap:(UIButton *)sender {
+    [[APIManager sharedInstance] ticketsWithRequest:_searchRequest withCompletion:^(NSArray *tickets) {
+        if (tickets.count > 0) {
+        TicketsViewController *ticketsViewController = [[TicketsViewController alloc] initWithTickets:tickets];
+        [self.navigationController showViewController:ticketsViewController sender:self];
+    } else {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Увы!" message:@"По данному направлению билетов не найдено" preferredStyle: UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Закрыть" style:(UIAlertActionStyleDefault) handler:nil]];
+        [self presentViewController:alertController animated:YES completion:nil];
+        }
+    }];
+}
+
 
 - (void)dataLoadedSuccessfully {
     [[APIManager sharedInstance] cityForCurrentIP:^(City *city) {
