@@ -10,7 +10,6 @@
 		D3131F0225B59BD300B2EB90 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D3131F0125B59BD300B2EB90 /* AppDelegate.m */; };
 		D3131F0525B59BD300B2EB90 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D3131F0425B59BD300B2EB90 /* SceneDelegate.m */; };
 		D3131F0825B59BD300B2EB90 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3131F0725B59BD300B2EB90 /* FirstViewController.m */; };
-		D3131F0E25B59BD300B2EB90 /* UINavigationController.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D3131F0C25B59BD300B2EB90 /* UINavigationController.xcdatamodeld */; };
 		D3131F1025B59BDA00B2EB90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3131F0F25B59BDA00B2EB90 /* Assets.xcassets */; };
 		D3131F1325B59BDA00B2EB90 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3131F1125B59BDA00B2EB90 /* LaunchScreen.storyboard */; };
 		D3131F1625B59BDA00B2EB90 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D3131F1525B59BDA00B2EB90 /* main.m */; };
@@ -25,7 +24,6 @@
 		D3131F0425B59BD300B2EB90 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		D3131F0625B59BD300B2EB90 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		D3131F0725B59BD300B2EB90 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		D3131F0D25B59BD300B2EB90 /* UINavigationController.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UINavigationController.xcdatamodel; sourceTree = "<group>"; };
 		D3131F0F25B59BDA00B2EB90 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3131F1225B59BDA00B2EB90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3131F1425B59BDA00B2EB90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -74,7 +72,6 @@
 				D3131F1125B59BDA00B2EB90 /* LaunchScreen.storyboard */,
 				D3131F1425B59BDA00B2EB90 /* Info.plist */,
 				D3131F1525B59BDA00B2EB90 /* main.m */,
-				D3131F0C25B59BD300B2EB90 /* UINavigationController.xcdatamodeld */,
 				D3131F1C25B59F5800B2EB90 /* SecondViewController.h */,
 				D3131F1D25B59F5800B2EB90 /* SecondViewController.m */,
 			);
@@ -153,7 +150,6 @@
 				D3131F1E25B59F5800B2EB90 /* SecondViewController.m in Sources */,
 				D3131F1625B59BDA00B2EB90 /* main.m in Sources */,
 				D3131F0825B59BD300B2EB90 /* FirstViewController.m in Sources */,
-				D3131F0E25B59BD300B2EB90 /* UINavigationController.xcdatamodeld in Sources */,
 				D3131F0225B59BD300B2EB90 /* AppDelegate.m in Sources */,
 				D3131F0525B59BD300B2EB90 /* SceneDelegate.m in Sources */,
 			);
@@ -337,19 +333,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		D3131F0C25B59BD300B2EB90 /* UINavigationController.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				D3131F0D25B59BD300B2EB90 /* UINavigationController.xcdatamodel */,
-			);
-			currentVersion = D3131F0D25B59BD300B2EB90 /* UINavigationController.xcdatamodel */;
-			path = UINavigationController.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = D3131EF525B59BD200B2EB90 /* Project object */;
 }

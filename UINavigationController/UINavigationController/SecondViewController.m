@@ -16,11 +16,6 @@
 
 @implementation SecondViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-}
-
 - (instancetype)initWithValue:(NSString *)value {
     self = [super init];
     if (self) {
@@ -28,6 +23,13 @@
     }
     return self;
 }
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+}
+
+
 
 
 @end

@@ -14,6 +14,8 @@
 		D3087BDE2595FA7A0037383B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3087BDD2595FA7A0037383B /* Assets.xcassets */; };
 		D3087BE12595FA7A0037383B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3087BDF2595FA7A0037383B /* LaunchScreen.storyboard */; };
 		D3087BE42595FA7A0037383B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D3087BE32595FA7A0037383B /* main.m */; };
+		D3131F2125B5DE5A00B2EB90 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D3131F2025B5DE5A00B2EB90 /* APIManager.m */; };
+		D3131F2425B6260300B2EB90 /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = D3131F2325B6260300B2EB90 /* Ticket.m */; };
 		D319B96125AE0D1800320B9A /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D319B96025AE0D1800320B9A /* DataManager.m */; };
 		D319B96625AE0EF900320B9A /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = D319B96325AE0EF900320B9A /* countries.json */; };
 		D319B96725AE0EF900320B9A /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = D319B96425AE0EF900320B9A /* cities.json */; };
@@ -38,6 +40,10 @@
 		D3087BE02595FA7A0037383B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3087BE22595FA7A0037383B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3087BE32595FA7A0037383B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D3131F1F25B5DE5A00B2EB90 /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
+		D3131F2025B5DE5A00B2EB90 /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
+		D3131F2225B6260300B2EB90 /* Ticket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ticket.h; sourceTree = "<group>"; };
+		D3131F2325B6260300B2EB90 /* Ticket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Ticket.m; sourceTree = "<group>"; };
 		D319B95F25AE0D1800320B9A /* DataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		D319B96025AE0D1800320B9A /* DataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		D319B96325AE0EF900320B9A /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
@@ -109,6 +115,10 @@
 				D319B96A25AE1AE700320B9A /* MainViewController.m */,
 				D319B99D25B20D0F00320B9A /* PlaceViewController.h */,
 				D319B99E25B20D0F00320B9A /* PlaceViewController.m */,
+				D3131F1F25B5DE5A00B2EB90 /* APIManager.h */,
+				D3131F2025B5DE5A00B2EB90 /* APIManager.m */,
+				D3131F2225B6260300B2EB90 /* Ticket.h */,
+				D3131F2325B6260300B2EB90 /* Ticket.m */,
 			);
 			path = UIComponentsWithoutInterfaceBuilder;
 			sourceTree = "<group>";
@@ -201,8 +211,10 @@
 				D3087BD62595FA770037383B /* FirstViewController.m in Sources */,
 				D319B96B25AE1AE700320B9A /* MainViewController.m in Sources */,
 				D3087BD02595FA770037383B /* AppDelegate.m in Sources */,
+				D3131F2425B6260300B2EB90 /* Ticket.m in Sources */,
 				D3E9B5EA25ACA373009594C9 /* Country.m in Sources */,
 				D3E9B5F025ADB10F009594C9 /* Airport.m in Sources */,
+				D3131F2125B5DE5A00B2EB90 /* APIManager.m in Sources */,
 				D3E9B5ED25ACBA28009594C9 /* City.m in Sources */,
 				D319B96125AE0D1800320B9A /* DataManager.m in Sources */,
 				D3087BD32595FA770037383B /* SceneDelegate.m in Sources */,
