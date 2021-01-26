@@ -37,6 +37,7 @@
     annotation.coordinate = CLLocationCoordinate2DMake(55.7522200, 37.6155600);
     [mapView addAnnotation:annotation];
     [mapView setDelegate:self];
+    [self locationFromAddress:@"Москва, Обыденский 2-й переулок, 13"];
     
     
     
@@ -53,6 +54,34 @@
     }
     annotationView.annotation = annotation;
     return annotationView;
+}
+
+- (void)addressFromLocation:(CLLocation *)location {
+    
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+       
+        if ([placemarks count] > 0) {
+            for (MKPlacemark *placemark in placemarks) {
+                NSLog(@"%@", placemark.name);
+            }
+        }
+        
+    }];
+}
+
+- (void)locationFromAddress:(NSString *)address {
+
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder geocodeAddressString:address completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        
+        if ([placemarks count] > 0) {
+            for (MKPlacemark *placemark in placemarks) {
+                NSLog(@"%@", placemark.location);
+            }
+        }
+        
+    }];
 }
 
 @end
