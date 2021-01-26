@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import <CoreLocation/CoreLocation.h>
 
 
 
@@ -82,6 +83,23 @@
         }
         
     }];
+}
+
+- (void)start {
+    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    //точность
+    locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+    locationManager.distanceFilter = 500;
+    
+    [locationManager startUpdatingLocation];
+}
+
+ -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    CLLocation *location = [locations firstObject];
+    if (location) {
+        NSLog(@"%@", location);
+    }
 }
 
 @end
