@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "FirstViewController.h"
 #import "MainViewController.h"
+#import "MapViewController.h"
 
 @interface SceneDelegate ()
 
@@ -18,18 +19,21 @@
 @implementation SceneDelegate
 
 
+
+
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
+
+    
     //замеряем экран и забираем bounds
     CGRect windowFrame = [[UIScreen mainScreen] bounds];
     self.window = [[UIWindow alloc] initWithFrame:windowFrame];
     //делаем window видимым
     [self.window makeKeyAndVisible];
     
-    
-    
+  
+    MapViewController *mainViewController = [[MapViewController alloc] init];
+
     UINavigationController *navigationController = [[UINavigationController alloc] init];
-    //FirstViewController *firstController = [[FirstViewController alloc] init];
-    MainViewController *mainViewController = [[MainViewController alloc]init];
     [navigationController pushViewController:mainViewController animated:YES];
     self.window.rootViewController = navigationController;
     //UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:navigationController];
