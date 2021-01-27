@@ -11,6 +11,7 @@
 #import "FirstViewController.h"
 #import "MainViewController.h"
 #import "MapViewController.h"
+#import "TabBarController.h"
 
 @interface SceneDelegate ()
 
@@ -30,12 +31,16 @@
     //делаем window видимым
     [self.window makeKeyAndVisible];
     
-  
-    MapViewController *mainViewController = [[MapViewController alloc] init];
+    TabBarController *tabBarController = [[TabBarController alloc]init];
+    
+    
+    //MapViewController *mainViewController = [[MapViewController alloc] init];
 
-    UINavigationController *navigationController = [[UINavigationController alloc] init];
-    [navigationController pushViewController:mainViewController animated:YES];
-    self.window.rootViewController = navigationController;
+   // UINavigationController *navigationController = [[UINavigationController alloc] init];
+    //[navigationController pushViewController:mainViewController animated:YES];
+    
+    self.window.rootViewController = tabBarController;;
+   
     //UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:navigationController];
     
     
