@@ -33,6 +33,8 @@
     age = [defaults integerForKey:@"age"];
 
     NSLog(@"name - %@, age - %ld", name, (long)age);
+    
+    NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.ru.example.app"];
 }
 
 
