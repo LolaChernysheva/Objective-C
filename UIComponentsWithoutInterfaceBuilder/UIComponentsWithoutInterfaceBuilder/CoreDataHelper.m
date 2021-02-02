@@ -7,7 +7,7 @@
 //
 
 #import "CoreDataHelper.h"
-#import "FavoriteTicket+CoreDataClass.swift"
+#import "FavoriteTicket+CoreDataProperties.h"
 
 @interface CoreDataHelper ()
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;

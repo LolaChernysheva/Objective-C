@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "DataManager.h"
-#import "FavoriteTicket+CoreDataClass.swift"
+#import "FavoriteTicket+CoreDataProperties.h"
 #import "Ticket.h"
 
 NS_ASSUME_NONNULL_BEGIN

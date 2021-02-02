@@ -29,9 +29,9 @@
 		D3418CDC25C007F8004305A9 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3418CDB25C007F8004305A9 /* MapViewController.m */; };
 		D3418D8E25C19272004305A9 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3418D8D25C19272004305A9 /* TabBarController.m */; };
 		D3418E0C25C411DF004305A9 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D3418E0A25C411DF004305A9 /* Model.xcdatamodeld */; };
-		D3418E1025C41400004305A9 /* FavoriteTicket+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3418E0E25C41400004305A9 /* FavoriteTicket+CoreDataClass.swift */; };
-		D3418E1125C41400004305A9 /* FavoriteTicket+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3418E0F25C41400004305A9 /* FavoriteTicket+CoreDataProperties.swift */; };
 		D3418E1425C41498004305A9 /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D3418E1325C41498004305A9 /* CoreDataHelper.m */; };
+		D3418E3E25C9838C004305A9 /* FavoriteTicket+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D3418E3C25C9838C004305A9 /* FavoriteTicket+CoreDataClass.m */; };
+		D3418E3F25C9838C004305A9 /* FavoriteTicket+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = D3418E3D25C9838C004305A9 /* FavoriteTicket+CoreDataProperties.m */; };
 		D3E9B5EA25ACA373009594C9 /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E9B5E925ACA373009594C9 /* Country.m */; };
 		D3E9B5ED25ACBA28009594C9 /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E9B5EC25ACBA28009594C9 /* City.m */; };
 		D3E9B5F025ADB10F009594C9 /* Airport.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E9B5EF25ADB10E009594C9 /* Airport.m */; };
@@ -76,11 +76,12 @@
 		D3418D8C25C19272004305A9 /* TabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		D3418D8D25C19272004305A9 /* TabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		D3418E0B25C411DF004305A9 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		D3418E0D25C41400004305A9 /* UIComponentsWithoutInterfaceBuilder-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIComponentsWithoutInterfaceBuilder-Bridging-Header.h"; sourceTree = "<group>"; };
-		D3418E0E25C41400004305A9 /* FavoriteTicket+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteTicket+CoreDataClass.swift"; sourceTree = "<group>"; };
-		D3418E0F25C41400004305A9 /* FavoriteTicket+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteTicket+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D3418E1225C41498004305A9 /* CoreDataHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
 		D3418E1325C41498004305A9 /* CoreDataHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
+		D3418E3A25C9838C004305A9 /* FavoriteTicket+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FavoriteTicket+CoreDataProperties.h"; sourceTree = "<group>"; };
+		D3418E3B25C9838C004305A9 /* FavoriteTicket+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FavoriteTicket+CoreDataClass.h"; sourceTree = "<group>"; };
+		D3418E3C25C9838C004305A9 /* FavoriteTicket+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FavoriteTicket+CoreDataClass.m"; sourceTree = "<group>"; };
+		D3418E3D25C9838C004305A9 /* FavoriteTicket+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FavoriteTicket+CoreDataProperties.m"; sourceTree = "<group>"; };
 		D3E9B5E825ACA373009594C9 /* Country.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Country.h; sourceTree = "<group>"; };
 		D3E9B5E925ACA373009594C9 /* Country.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Country.m; sourceTree = "<group>"; };
 		D3E9B5EB25ACBA28009594C9 /* City.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
@@ -103,9 +104,12 @@
 		D3087BC22595FA770037383B = {
 			isa = PBXGroup;
 			children = (
+				D3418E3A25C9838C004305A9 /* FavoriteTicket+CoreDataProperties.h */,
+				D3418E3B25C9838C004305A9 /* FavoriteTicket+CoreDataClass.h */,
+				D3418E3C25C9838C004305A9 /* FavoriteTicket+CoreDataClass.m */,
+				D3418E3D25C9838C004305A9 /* FavoriteTicket+CoreDataProperties.m */,
 				D3087BCD2595FA770037383B /* UIComponentsWithoutInterfaceBuilder */,
 				D3087BCC2595FA770037383B /* Products */,
-				D3418E0D25C41400004305A9 /* UIComponentsWithoutInterfaceBuilder-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,8 +124,6 @@
 		D3087BCD2595FA770037383B /* UIComponentsWithoutInterfaceBuilder */ = {
 			isa = PBXGroup;
 			children = (
-				D3418E0E25C41400004305A9 /* FavoriteTicket+CoreDataClass.swift */,
-				D3418E0F25C41400004305A9 /* FavoriteTicket+CoreDataProperties.swift */,
 				D319B96225AE0EF900320B9A /* Data */,
 				D3087BCE2595FA770037383B /* AppDelegate.h */,
 				D3087BCF2595FA770037383B /* AppDelegate.m */,
@@ -253,13 +255,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3087BE42595FA7A0037383B /* main.m in Sources */,
-				D3418E1125C41400004305A9 /* FavoriteTicket+CoreDataProperties.swift in Sources */,
 				D3418CD925C00512004305A9 /* MapPrice.m in Sources */,
 				D3087BDC2595FA770037383B /* UIComponentsWithoutInterfaceBuilder.xcdatamodeld in Sources */,
 				D3418D8E25C19272004305A9 /* TabBarController.m in Sources */,
 				D3418CDC25C007F8004305A9 /* MapViewController.m in Sources */,
 				D319B99F25B20D0F00320B9A /* PlaceViewController.m in Sources */,
 				D3087BD62595FA770037383B /* FirstViewController.m in Sources */,
+				D3418E3E25C9838C004305A9 /* FavoriteTicket+CoreDataClass.m in Sources */,
 				D3418E0C25C411DF004305A9 /* Model.xcdatamodeld in Sources */,
 				D319B96B25AE1AE700320B9A /* MainViewController.m in Sources */,
 				D3087BD02595FA770037383B /* AppDelegate.m in Sources */,
@@ -269,10 +271,10 @@
 				D3418E1425C41498004305A9 /* CoreDataHelper.m in Sources */,
 				D3E9B5F025ADB10F009594C9 /* Airport.m in Sources */,
 				D3131F2125B5DE5A00B2EB90 /* APIManager.m in Sources */,
+				D3418E3F25C9838C004305A9 /* FavoriteTicket+CoreDataProperties.m in Sources */,
 				D3E9B5ED25ACBA28009594C9 /* City.m in Sources */,
 				D3131F2A25B629FF00B2EB90 /* TicketsViewController.m in Sources */,
 				D319B96125AE0D1800320B9A /* DataManager.m in Sources */,
-				D3418E1025C41400004305A9 /* FavoriteTicket+CoreDataClass.swift in Sources */,
 				D3087BD32595FA770037383B /* SceneDelegate.m in Sources */,
 				D3131F2725B6280100B2EB90 /* TicketTableViewCell.m in Sources */,
 			);
