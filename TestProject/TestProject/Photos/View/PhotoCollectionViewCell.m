@@ -15,18 +15,20 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.contentView.backgroundColor = [UIColor systemBlueColor];
-        UIImageView  *photoImageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.contentView.frame.origin.x,
+        _photoImageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.contentView.frame.origin.x,
                                                                                     self.contentView.frame.origin.y,
                                                                                     self.frame.size.width,
                                                                                     self.frame.size.height)];
-        photoImageView.backgroundColor = [UIColor systemPinkColor];
+        _photoImageView.backgroundColor = [UIColor whiteColor];
+        _photoImageView.translatesAutoresizingMaskIntoConstraints = false;
         
-       NSString *imgURL = @"https://pbs.twimg.com/media/DvYlsRSXcAAMBih.jpg";
-       NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:imgURL]];
+//       NSString *imgURL = @"https://pbs.twimg.com/media/DvYlsRSXcAAMBih.jpg";
+//       NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:imgURL]];
        
-       photoImageView.image = [UIImage imageWithData:data];
-       photoImageView.contentMode = UIViewContentModeScaleAspectFit;
-      [self addSubview:photoImageView];
+       //photoImageView.image = [UIImage imageWithData:data];
+       // photoImageView.image = [UIImage imageNamed:@"vk"];
+       _photoImageView.contentMode = UIViewContentModeScaleAspectFit;
+      [self addSubview:_photoImageView];
 
     }
     return self;

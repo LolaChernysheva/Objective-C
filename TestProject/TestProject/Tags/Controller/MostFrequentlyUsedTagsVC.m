@@ -13,6 +13,7 @@
 #import "Tag.h"
 #import "Hottags.h"
 #import "Photos.h"
+#import "PhotoCellModel.h"
 
 @interface MostFrequentlyUsedTagsVC ()
 
@@ -27,16 +28,14 @@
     [super viewDidLoad];
     
     [self fetchData];
-    _tagsArray = @[];
-
+    _tagsArray = [[NSMutableArray<TagElement *> alloc]init];
+    
     UITableView *tagsListTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     tagsListTableView.dataSource = self;
     tagsListTableView.delegate = self;
     _tableView = tagsListTableView;
-    [self.view addSubview:tagsListTableView];
-    
+    [self.view addSubview:tagsListTableView];    
 }
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
@@ -54,12 +53,21 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-   Photos *photos = [[Photos alloc]init];
-    //photoArray = photos.photo;
-    //NSString *identifier =
     
-    
+    NSInteger indexRow = indexPath.row;
+    TagElement *currentTag = [_tagsArray objectAtIndex:indexRow];
     PhotosVC *photosVC = [[PhotosVC alloc] init];
+    NSMutableArray<PhotoCellModel *> *photoCellModelList = [[NSMutableArray alloc]init];
+    
+    
+    NSArray <Photo *> *photoArray = currentTag.thmData.photos.photo;
+    for (Photo *photo in photoArray) {
+        PhotoCellModel *photoCellModel = [[PhotoCellModel alloc]init];
+        photoCellModel.identifier = photo.identifier;
+        [photoCellModelList addObject:photoCellModel];
+    }
+
+    photosVC.photoCellModelList = photoCellModelList;
     [self.navigationController pushViewController: photosVC animated: YES];
 }
 
@@ -98,14 +106,10 @@
         
         NSDictionary *results = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
         Tags *tags = [[Tags alloc]initWithDictionary: results];
-        _tagsArray = tags.hottags.tag.tagElements;
+        self.tagsArray = tags.hottags.tag.tagElements;
         dispatch_async(dispatch_get_main_queue(), ^{
-        [_tableView reloadData];
+            [self.tableView reloadData];
         });
-        //JSON Parsing....
-        NSString *message = results[@"Message"];
-        BOOL status = results[@"Status"];
-        
     }];
     
     // Fire the request

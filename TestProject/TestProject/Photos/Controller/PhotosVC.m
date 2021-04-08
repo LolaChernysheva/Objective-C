@@ -8,18 +8,16 @@
 
 #import "PhotosVC.h"
 #import "DetailPhotoVC.h"
-#import "PhotoTagModel.h"
-#import "PhotoTagsModel.h"
-#import "PhotoInfoResponse.h"
 #import "PhotoCollectionViewCell.h"
 #import "PhotoResponse.h"
-
-
+#import "MostFrequentlyUsedTagsVC.h"
+#import "PhotoCellModel.h"
 
 @interface PhotosVC ()
 
 @property (nonatomic, strong) UICollectionView *photoCollectionView;
 @property (nonatomic, strong) NSMutableArray<SizeElement *> *sizesArray;
+@property (nonatomic, strong) NSMutableDictionary <NSString *, UIImage *> *idToPhoto;
 
 @end
 
@@ -28,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self fetchData];
-    _sizesArray = @[];
+    
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.minimumLineSpacing = 1.0;
@@ -46,67 +44,83 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _sizesArray.count;
+    return _photoCellModelList.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     PhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"CollectionViewCellIdentifier" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor lightGrayColor];
+    cell.backgroundColor = [UIColor whiteColor];
+    PhotoCellModel *photoCellModel = _photoCellModelList[indexPath.row];
+    cell.photoImageView.image = photoCellModel.imaage;
     return cell;
 }
 
 - (void)collectionView:(UITableView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     DetailPhotoVC *detailPhotoVC = [[DetailPhotoVC alloc] init];
+    PhotoCellModel *photoCellModel = _photoCellModelList[indexPath.row];
+    NSString *imageUrl = [photoCellModel.sizeElementList lastObject].source;
+    [detailPhotoVC loadImage:imageUrl];
     [self.navigationController pushViewController: detailPhotoVC animated: YES];
 }
 
 -(void)fetchData {
     NSURLSessionConfiguration *defaultSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultSessionConfiguration];
-    
-    // Set URL Query Items
-    NSURLComponents *urlComponents = [[NSURLComponents alloc]initWithString:@"https://www.flickr.com/services/rest/"];
-    NSURLQueryItem *gueryItemMethod = [[NSURLQueryItem alloc]initWithName:@"method" value:@"flickr.photos.getSizes"];
-    NSURLQueryItem *gueryItemFormat = [[NSURLQueryItem alloc]initWithName:@"format" value:@"json"];
-    NSURLQueryItem *querryItemNojsoncallback = [[NSURLQueryItem alloc]initWithName:@"nojsoncallback" value:@"1"];
-    NSURLQueryItem *querryItemPhotoId = [[NSURLQueryItem alloc]initWithName:@"photo_id" value:@"31224116391"];
-    NSURLQueryItem *querryItemApiKey = [[NSURLQueryItem alloc]initWithName:@"api_key" value:@"45420ba866f533cd68d2d8efe7b4645e"];
-    
-    NSArray<NSURLQueryItem *> *queryItems = @[
-        gueryItemMethod,
-        gueryItemFormat,
-        querryItemNojsoncallback,
-        querryItemPhotoId,
-        querryItemApiKey
-    ];
-    urlComponents.queryItems = queryItems;
-    
-    // Setup the request with URL
-    NSURL *url = urlComponents.URL;
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
-    
-    // Convert GET string parameters to data using UTF8 Encoding
-    [urlRequest setHTTPMethod:@"GET"];
-    
-    // Create dataTask
-    NSURLSessionDataTask *dataTask = [defaultSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+
+    for (NSInteger index = 0; index < _photoCellModelList.count; index++) {
         
-        NSDictionary *results = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-        PhotoResponse *photoResponse = [[PhotoResponse alloc]initWithDictionary: results];
-        _sizesArray = photoResponse.sizes.size;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.collectionView reloadData];
-        });
+        PhotoCellModel *photoCellModel = _photoCellModelList[index];
+
+        // Set URL Query Items
+        NSURLComponents *urlComponents = [[NSURLComponents alloc]initWithString:@"https://www.flickr.com/services/rest/"];
+        NSURLQueryItem *gueryItemMethod = [[NSURLQueryItem alloc]initWithName:@"method" value:@"flickr.photos.getSizes"];
+        NSURLQueryItem *gueryItemFormat = [[NSURLQueryItem alloc]initWithName:@"format" value:@"json"];
+        NSURLQueryItem *querryItemNojsoncallback = [[NSURLQueryItem alloc]initWithName:@"nojsoncallback" value:@"1"];
+        NSURLQueryItem *querryItemPhotoId = [[NSURLQueryItem alloc]initWithName:@"photo_id" value:photoCellModel.identifier];
+        NSURLQueryItem *querryItemApiKey = [[NSURLQueryItem alloc]initWithName:@"api_key" value:@"45420ba866f533cd68d2d8efe7b4645e"];
         
-        NSLog(@"%lu", photoResponse.sizes.size.count);
+        NSArray<NSURLQueryItem *> *queryItems = @[
+            gueryItemMethod,
+            gueryItemFormat,
+            querryItemNojsoncallback,
+            querryItemPhotoId,
+            querryItemApiKey
+        ];
+        urlComponents.queryItems = queryItems;
         
-        //Get image by URL
-    }];
-    
-    // Fire the request
-    [dataTask resume];
-    
-    
+        // Setup the request with URL
+        NSURL *url = urlComponents.URL;
+        NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
+        
+        // Convert GET string parameters to data using UTF8 Encoding
+        [urlRequest setHTTPMethod:@"GET"];
+        
+        // Create dataTask
+        NSURLSessionDataTask *dataTask = [defaultSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            
+            NSDictionary *results = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+            PhotoResponse *photoResponse = [[PhotoResponse alloc]initWithDictionary: results];
+            NSMutableArray<SizeElement *> *sizesArray = photoResponse.sizes.size;
+            
+            NSURL *smallImageUrl = [[NSURL alloc] initWithString: sizesArray[3].source];
+            NSData *urlImageData = [[NSData alloc]initWithContentsOfURL:smallImageUrl];
+            
+            UIImage *smallImage = [[UIImage alloc]initWithData:urlImageData];
+            NSLog(@"%@", smallImage);
+            photoCellModel.imaage = smallImage;
+            photoCellModel.sizeElementList = sizesArray;
+            self.photoCellModelList[index] = photoCellModel;
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.collectionView reloadData];
+            });
+            
+        }];
+        
+        // Fire the request
+        [dataTask resume];
+        
+    }
 }
 
 

@@ -23,7 +23,7 @@ typedef enum DataSourceType {
 @interface DataManager : NSObject
 
 + (instancetype)sharedInstance;
-- (void)loadData;
+
 
 //массив для хранения готовых объектов данных (только чтение)
 @property (nonatomic, strong, readonly) NSArray *tags;

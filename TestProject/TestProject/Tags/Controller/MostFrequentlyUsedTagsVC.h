@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MostFrequentlyUsedTagsVC : UIViewController
+@interface MostFrequentlyUsedTagsVC : UIViewController<UITableViewDataSource, UITableViewDelegate>
 -(void)fetchData;
 
 @end
