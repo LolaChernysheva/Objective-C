@@ -11,7 +11,9 @@
 #import "City.h"
 #import "Airport.h"
 
+
 @interface DataManager ()
+
 @property (nonatomic, strong) NSMutableArray *countriesArray;
 @property (nonatomic, strong) NSMutableArray *citiesArray;
 @property (nonatomic, strong) NSMutableArray *airportsArray;

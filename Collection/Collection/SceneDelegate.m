@@ -9,6 +9,7 @@
 #import "SceneDelegate.h"
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "FirstVC.h"
 
 @interface SceneDelegate ()
 
@@ -24,7 +25,8 @@
     
     ViewController *firstController = [[ViewController alloc]init];
     UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:firstController];
-    self.window.rootViewController = navigationController;
+    FirstVC *firstVC = [[FirstVC alloc]init];
+    self.window.rootViewController = firstVC;
     UIWindowScene *windowScene = (UIWindowScene *)scene;
     [self.window setWindowScene:windowScene];
 }
