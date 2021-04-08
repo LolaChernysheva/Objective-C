@@ -27,7 +27,6 @@
     [super viewDidLoad];
     [self fetchData];
     
-    
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.minimumLineSpacing = 1.0;
     layout.minimumInteritemSpacing = 1.0;
@@ -64,63 +63,66 @@
 }
 
 -(void)fetchData {
+    
     NSURLSessionConfiguration *defaultSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultSessionConfiguration];
+    NSURLComponents *urlComponents = [[NSURLComponents alloc]initWithString:@"https://www.flickr.com/services/rest/"];
+    NSURLQueryItem *gueryItemMethod = [[NSURLQueryItem alloc]initWithName:@"method" value:@"flickr.photos.getSizes"];
+    NSURLQueryItem *gueryItemFormat = [[NSURLQueryItem alloc]initWithName:@"format" value:@"json"];
+    NSURLQueryItem *querryItemNojsoncallback = [[NSURLQueryItem alloc]initWithName:@"nojsoncallback" value:@"1"];
+    NSURLQueryItem *querryItemApiKey = [[NSURLQueryItem alloc]initWithName:@"api_key" value:@"45420ba866f533cd68d2d8efe7b4645e"];
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        for (NSInteger index = 0; index < self.photoCellModelList.count; index++) {
+            
+            PhotoCellModel *photoCellModel = self.photoCellModelList[index];
+            
+            // Set URL Query Items
+            NSURLQueryItem *querryItemPhotoId = [[NSURLQueryItem alloc]initWithName:@"photo_id" value:photoCellModel.identifier];
 
-    for (NSInteger index = 0; index < _photoCellModelList.count; index++) {
-        
-        PhotoCellModel *photoCellModel = _photoCellModelList[index];
-
-        // Set URL Query Items
-        NSURLComponents *urlComponents = [[NSURLComponents alloc]initWithString:@"https://www.flickr.com/services/rest/"];
-        NSURLQueryItem *gueryItemMethod = [[NSURLQueryItem alloc]initWithName:@"method" value:@"flickr.photos.getSizes"];
-        NSURLQueryItem *gueryItemFormat = [[NSURLQueryItem alloc]initWithName:@"format" value:@"json"];
-        NSURLQueryItem *querryItemNojsoncallback = [[NSURLQueryItem alloc]initWithName:@"nojsoncallback" value:@"1"];
-        NSURLQueryItem *querryItemPhotoId = [[NSURLQueryItem alloc]initWithName:@"photo_id" value:photoCellModel.identifier];
-        NSURLQueryItem *querryItemApiKey = [[NSURLQueryItem alloc]initWithName:@"api_key" value:@"45420ba866f533cd68d2d8efe7b4645e"];
-        
-        NSArray<NSURLQueryItem *> *queryItems = @[
-            gueryItemMethod,
-            gueryItemFormat,
-            querryItemNojsoncallback,
-            querryItemPhotoId,
-            querryItemApiKey
-        ];
-        urlComponents.queryItems = queryItems;
-        
-        // Setup the request with URL
-        NSURL *url = urlComponents.URL;
-        NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
-        
-        // Convert GET string parameters to data using UTF8 Encoding
-        [urlRequest setHTTPMethod:@"GET"];
-        
-        // Create dataTask
-        NSURLSessionDataTask *dataTask = [defaultSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            NSArray<NSURLQueryItem *> *queryItems = @[
+                gueryItemMethod,
+                gueryItemFormat,
+                querryItemNojsoncallback,
+                querryItemPhotoId,
+                querryItemApiKey
+            ];
+            urlComponents.queryItems = queryItems;
             
-            NSDictionary *results = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-            PhotoResponse *photoResponse = [[PhotoResponse alloc]initWithDictionary: results];
-            NSMutableArray<SizeElement *> *sizesArray = photoResponse.sizes.size;
+            // Setup the request with URL
+            NSURL *url = urlComponents.URL;
+            NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
             
-            NSURL *smallImageUrl = [[NSURL alloc] initWithString: sizesArray[3].source];
-            NSData *urlImageData = [[NSData alloc]initWithContentsOfURL:smallImageUrl];
+            // Convert GET string parameters to data using UTF8 Encoding
+            [urlRequest setHTTPMethod:@"GET"];
             
-            UIImage *smallImage = [[UIImage alloc]initWithData:urlImageData];
-            NSLog(@"%@", smallImage);
-            photoCellModel.imaage = smallImage;
-            photoCellModel.sizeElementList = sizesArray;
-            self.photoCellModelList[index] = photoCellModel;
-
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.collectionView reloadData];
-            });
+            // Create dataTask
+            NSURLSessionDataTask *dataTask = [defaultSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                
+                NSDictionary *results = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                PhotoResponse *photoResponse = [[PhotoResponse alloc]initWithDictionary: results];
+                NSMutableArray<SizeElement *> *sizesArray = photoResponse.sizes.size;
+                
+                NSURL *smallImageUrl = [[NSURL alloc] initWithString: sizesArray[3].source];
+                NSData *urlImageData = [[NSData alloc]initWithContentsOfURL:smallImageUrl];
+                
+                UIImage *smallImage = [[UIImage alloc]initWithData:urlImageData];
+                NSLog(@"%@", smallImage);
+                photoCellModel.imaage = smallImage;
+                photoCellModel.sizeElementList = sizesArray;
+                self.photoCellModelList[index] = photoCellModel;
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.collectionView reloadData];
+                });
+                
+            }];
             
-        }];
-        
-        // Fire the request
-        [dataTask resume];
-        
-    }
+            // Fire the request
+            [dataTask resume];
+            
+        }
+    });
 }
 
 

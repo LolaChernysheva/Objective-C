@@ -13,8 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PhotosVC : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
 @property (strong, nonatomic) UICollectionView *collectionView;
-//@property (nonatomic, strong) NSMutableArray<NSString *> *identifierArray;
 @property (nonatomic, strong) NSMutableArray<PhotoCellModel *> *photoCellModelList;
+
 @end
 
 NS_ASSUME_NONNULL_END
