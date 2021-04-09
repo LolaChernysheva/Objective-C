@@ -30,15 +30,3 @@
 
 @end
 
-/*
-    "id": "27232729082",
-    "secret": "8c8ae62dd1",
-    "server": "7587",
-    "farm": 8,
-    "owner": "138649129@N08",
-    "username": null,
-    "title": "In the sky",
-    "ispublic": 1,
-    "isfriend": 0,
-    "isfamily": 0
- */

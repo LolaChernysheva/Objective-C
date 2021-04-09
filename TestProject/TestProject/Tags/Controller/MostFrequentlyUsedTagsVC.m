@@ -57,17 +57,8 @@
     NSInteger indexRow = indexPath.row;
     TagElement *currentTag = [_tagsArray objectAtIndex:indexRow];
     PhotosVC *photosVC = [[PhotosVC alloc] init];
-    NSMutableArray<PhotoCellModel *> *photoCellModelList = [[NSMutableArray alloc]init];
+    photosVC.tagName = currentTag.content;
     
-    
-    NSArray <Photo *> *photoArray = currentTag.thmData.photos.photo;
-    for (Photo *photo in photoArray) {
-        PhotoCellModel *photoCellModel = [[PhotoCellModel alloc]init];
-        photoCellModel.identifier = photo.identifier;
-        [photoCellModelList addObject:photoCellModel];
-    }
-
-    photosVC.photoCellModelList = photoCellModelList;
     [self.navigationController pushViewController: photosVC animated: YES];
 }
 

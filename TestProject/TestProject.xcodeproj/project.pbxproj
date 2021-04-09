@@ -12,6 +12,8 @@
 		D3726937261E3B3700305D0C /* PhotoResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = D3726936261E3B3700305D0C /* PhotoResponse.m */; };
 		D372693B261E3B6500305D0C /* SizeElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D372693A261E3B6500305D0C /* SizeElement.m */; };
 		D372694B261E403E00305D0C /* SizesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D372694A261E403E00305D0C /* SizesModel.m */; };
+		D37920F62620DC6700C68A64 /* PhotoListResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = D37920F52620DC6700C68A64 /* PhotoListResponse.m */; };
+		D37920F92620DD6500C68A64 /* PhotoInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D37920F82620DD6500C68A64 /* PhotoInfoModel.m */; };
 		D38E1107261F838600EB0519 /* PhotoCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D38E1106261F838600EB0519 /* PhotoCellModel.m */; };
 		D3F9A6432618685100280339 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F9A6422618685100280339 /* AppDelegate.m */; };
 		D3F9A6462618685100280339 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F9A6452618685100280339 /* SceneDelegate.m */; };
@@ -42,6 +44,10 @@
 		D372693A261E3B6500305D0C /* SizeElement.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SizeElement.m; sourceTree = "<group>"; };
 		D3726949261E403E00305D0C /* SizesModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SizesModel.h; sourceTree = "<group>"; };
 		D372694A261E403E00305D0C /* SizesModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SizesModel.m; sourceTree = "<group>"; };
+		D37920F42620DC6700C68A64 /* PhotoListResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoListResponse.h; sourceTree = "<group>"; };
+		D37920F52620DC6700C68A64 /* PhotoListResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoListResponse.m; sourceTree = "<group>"; };
+		D37920F72620DD6500C68A64 /* PhotoInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoInfoModel.h; sourceTree = "<group>"; };
+		D37920F82620DD6500C68A64 /* PhotoInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoInfoModel.m; sourceTree = "<group>"; };
 		D38E1105261F838600EB0519 /* PhotoCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoCellModel.h; sourceTree = "<group>"; };
 		D38E1106261F838600EB0519 /* PhotoCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoCellModel.m; sourceTree = "<group>"; };
 		D3F9A63E2618685100280339 /* TestProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +115,10 @@
 		D3726934261E3B1C00305D0C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D37920F72620DD6500C68A64 /* PhotoInfoModel.h */,
+				D37920F82620DD6500C68A64 /* PhotoInfoModel.m */,
+				D37920F42620DC6700C68A64 /* PhotoListResponse.h */,
+				D37920F52620DC6700C68A64 /* PhotoListResponse.m */,
 				D3726948261E402900305D0C /* SizesModel */,
 				D3726935261E3B3700305D0C /* PhotoResponse.h */,
 				D3726936261E3B3700305D0C /* PhotoResponse.m */,
@@ -189,11 +199,11 @@
 		D3F9A6402618685100280339 /* TestProject */ = {
 			isa = PBXGroup;
 			children = (
-				D38E1101261F831700EB0519 /* DetailPhoto */,
 				D3F9A66026186C0000280339 /* App */,
 				D3FB64652618993D0083AAA0 /* Network */,
-				D3FB645D261881120083AAA0 /* Photos */,
 				D3F9A66126186C0900280339 /* Tags */,
+				D3FB645D261881120083AAA0 /* Photos */,
+				D38E1101261F831700EB0519 /* DetailPhoto */,
 				D3F9A66526186C6700280339 /* Supporting files */,
 			);
 			path = TestProject;
@@ -445,6 +455,7 @@
 				D3F9A65F261869DB00280339 /* MostFrequentlyUsedTagsVC.m in Sources */,
 				D3FB6461261881490083AAA0 /* PhotosVC.m in Sources */,
 				D3FB64852618F2DE0083AAA0 /* ThmData.m in Sources */,
+				D37920F62620DC6700C68A64 /* PhotoListResponse.m in Sources */,
 				D3F9A6432618685100280339 /* AppDelegate.m in Sources */,
 				D3FB6464261894D10083AAA0 /* DetailPhotoVC.m in Sources */,
 				D372694B261E403E00305D0C /* SizesModel.m in Sources */,
@@ -453,6 +464,7 @@
 				D3726937261E3B3700305D0C /* PhotoResponse.m in Sources */,
 				D3FB64812618F2760083AAA0 /* TagElement.m in Sources */,
 				D34734B4261A2B4800B1A8AC /* Tag.m in Sources */,
+				D37920F92620DD6500C68A64 /* PhotoInfoModel.m in Sources */,
 				D3F9A6462618685100280339 /* SceneDelegate.m in Sources */,
 				D3726930261D004200305D0C /* PhotoCollectionViewCell.m in Sources */,
 				D372693B261E3B6500305D0C /* SizeElement.m in Sources */,

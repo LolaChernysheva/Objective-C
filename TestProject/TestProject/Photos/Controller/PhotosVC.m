@@ -12,21 +12,22 @@
 #import "PhotoResponse.h"
 #import "MostFrequentlyUsedTagsVC.h"
 #import "PhotoCellModel.h"
+#import "TagElement.h"
+#import "PhotoListResponse.h"
 
 @interface PhotosVC ()
 
 @property (nonatomic, strong) UICollectionView *photoCollectionView;
-@property (nonatomic, strong) NSMutableArray<SizeElement *> *sizesArray;
-@property (nonatomic, strong) NSMutableDictionary <NSString *, UIImage *> *idToPhoto;
 
 @end
 
 @implementation PhotosVC
 
 - (void)viewDidLoad {
+    _photoCellModelList = [[NSMutableArray alloc]init];
     [super viewDidLoad];
     [self fetchData];
-    
+
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.minimumLineSpacing = 1.0;
     layout.minimumInteritemSpacing = 1.0;
@@ -63,7 +64,56 @@
 }
 
 -(void)fetchData {
+    NSURLSessionConfiguration *defaultSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultSessionConfiguration];
+    NSURLComponents *urlComponents = [[NSURLComponents alloc]initWithString:@"https://www.flickr.com/services/rest/"];
+    NSURLQueryItem *gueryItemMethod = [[NSURLQueryItem alloc]initWithName:@"method" value:@"flickr.photos.search"];
+    NSURLQueryItem *gueryItemFormat = [[NSURLQueryItem alloc]initWithName:@"format" value:@"json"];
+    NSURLQueryItem *querryItemNojsoncallback = [[NSURLQueryItem alloc]initWithName:@"nojsoncallback" value:@"1"];
+    NSURLQueryItem *querryItemApiKey = [[NSURLQueryItem alloc]initWithName:@"api_key" value:@"45420ba866f533cd68d2d8efe7b4645e"];
+    NSURLQueryItem *querryItemagName = [[NSURLQueryItem alloc]initWithName:@"tags" value:_tagName];
     
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        NSArray<NSURLQueryItem *> *queryItems = @[
+            gueryItemMethod,
+            gueryItemFormat,
+            querryItemNojsoncallback,
+            querryItemApiKey,
+            querryItemagName
+        ];
+        urlComponents.queryItems = queryItems;
+        
+        // Setup the request with URL
+        NSURL *url = urlComponents.URL;
+        NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
+        
+        // Convert GET string parameters to data using UTF8 Encoding
+        [urlRequest setHTTPMethod:@"GET"];
+        
+        // Create dataTask
+        NSURLSessionDataTask *dataTask = [defaultSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            
+            NSDictionary *results = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+            PhotoListResponse *photoListResponse = [[PhotoListResponse alloc] initWithDictionary:results];
+            NSArray<Photo *> *photoList = photoListResponse.photos.photo;
+            
+            for (Photo *photo in photoList) {
+                PhotoCellModel *photoCellModel = [[PhotoCellModel alloc]init];
+                photoCellModel.identifier = photo.identifier;
+                [self.photoCellModelList addObject:photoCellModel];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.collectionView reloadData];
+            });
+            [self loadImages];
+        }];
+        
+        // Fire the request
+        [dataTask resume];
+    });
+}
+
+-(void)loadImages {
     NSURLSessionConfiguration *defaultSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultSessionConfiguration];
     NSURLComponents *urlComponents = [[NSURLComponents alloc]initWithString:@"https://www.flickr.com/services/rest/"];
@@ -73,6 +123,8 @@
     NSURLQueryItem *querryItemApiKey = [[NSURLQueryItem alloc]initWithName:@"api_key" value:@"45420ba866f533cd68d2d8efe7b4645e"];
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        //for (NSString *photoId in photoIdList) {
+            
         for (NSInteger index = 0; index < self.photoCellModelList.count; index++) {
             
             PhotoCellModel *photoCellModel = self.photoCellModelList[index];
@@ -103,7 +155,7 @@
                 PhotoResponse *photoResponse = [[PhotoResponse alloc]initWithDictionary: results];
                 NSMutableArray<SizeElement *> *sizesArray = photoResponse.sizes.size;
                 
-                NSURL *smallImageUrl = [[NSURL alloc] initWithString: sizesArray[3].source];
+                NSURL *smallImageUrl = [[NSURL alloc] initWithString: sizesArray[1].source];
                 NSData *urlImageData = [[NSData alloc]initWithContentsOfURL:smallImageUrl];
                 
                 UIImage *smallImage = [[UIImage alloc]initWithData:urlImageData];
@@ -124,8 +176,6 @@
         }
     });
 }
-
-
 
 @end
 
