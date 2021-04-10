@@ -15,6 +15,9 @@
 #import "Photos.h"
 #import "PhotoCellModel.h"
 
+#define API_URL @"https://www.flickr.com/services/rest/"
+#define API_KEY @"45420ba866f533cd68d2d8efe7b4645e"
+
 @interface MostFrequentlyUsedTagsVC ()
 
 @property (nonatomic, strong) NSMutableArray<TagElement *> *tagsArray;
@@ -69,12 +72,12 @@
     NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultSessionConfiguration];
     
     // Set URL Query Items
-    NSURLComponents *urlComponents = [[NSURLComponents alloc]initWithString:@"https://www.flickr.com/services/rest/"];
+    NSURLComponents *urlComponents = [[NSURLComponents alloc]initWithString: API_URL];
     NSURLQueryItem *gueryItemMethod = [[NSURLQueryItem alloc]initWithName:@"method" value:@"flickr.tags.getHotList"];
     NSURLQueryItem *gueryItemFormat = [[NSURLQueryItem alloc]initWithName:@"format" value:@"json"];
     NSURLQueryItem *querryItemNojsoncallback = [[NSURLQueryItem alloc]initWithName:@"nojsoncallback" value:@"1"];
     NSURLQueryItem *querryItemCount = [[NSURLQueryItem alloc]initWithName:@"count" value:@"10"];
-    NSURLQueryItem *querryItemApiKey = [[NSURLQueryItem alloc]initWithName:@"api_key" value:@"45420ba866f533cd68d2d8efe7b4645e"];
+    NSURLQueryItem *querryItemApiKey = [[NSURLQueryItem alloc]initWithName:@"api_key" value: API_KEY];
     
     NSArray<NSURLQueryItem *> *queryItems = @[
         gueryItemMethod,
