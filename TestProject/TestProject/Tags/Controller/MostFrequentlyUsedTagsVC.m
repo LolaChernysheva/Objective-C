@@ -33,11 +33,20 @@
     [self fetchData];
     _tagsArray = [[NSMutableArray<TagElement *> alloc]init];
     
-    UITableView *tagsListTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+   // UITableView *tagsListTableView = [[UITableView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
+    
+   UITableView *tagsListTableView = [[UITableView alloc] init];
+    tagsListTableView.translatesAutoresizingMaskIntoConstraints = false;
+
     tagsListTableView.dataSource = self;
     tagsListTableView.delegate = self;
     _tableView = tagsListTableView;
-    [self.view addSubview:tagsListTableView];    
+    [self.view addSubview:tagsListTableView];
+    
+    [tagsListTableView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = true;
+    [tagsListTableView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor].active = true;
+    [tagsListTableView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = true;
+    [tagsListTableView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = true;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

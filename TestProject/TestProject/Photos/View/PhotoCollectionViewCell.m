@@ -20,7 +20,6 @@
                                                                        self.frame.size.width,
                                                                        self.frame.size.height)];
         _photoImageView.backgroundColor = [UIColor lightGrayColor];
-        _photoImageView.translatesAutoresizingMaskIntoConstraints = false;
         _photoImageView.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:_photoImageView];
         
