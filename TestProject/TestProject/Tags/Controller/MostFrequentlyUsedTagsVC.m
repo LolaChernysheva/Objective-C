@@ -32,12 +32,9 @@
     
     [self fetchData];
     _tagsArray = [[NSMutableArray<TagElement *> alloc]init];
-    
-   // UITableView *tagsListTableView = [[UITableView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
-    
-   UITableView *tagsListTableView = [[UITableView alloc] init];
+    UITableView *tagsListTableView = [[UITableView alloc] init];
     tagsListTableView.translatesAutoresizingMaskIntoConstraints = false;
-
+    
     tagsListTableView.dataSource = self;
     tagsListTableView.delegate = self;
     _tableView = tagsListTableView;
@@ -74,8 +71,7 @@
     [self.navigationController pushViewController: photosVC animated: YES];
 }
 
--(void)fetchData
-{
+-(void)fetchData {
     
     NSURLSessionConfiguration *defaultSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultSessionConfiguration];
@@ -118,10 +114,6 @@
     // Fire the request
     [dataTask resume];
 }
-
-
-
-
 @end
 
 
