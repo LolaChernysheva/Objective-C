@@ -34,8 +34,4 @@
     });
     return instance;
 }
-
-
-
-
 @end

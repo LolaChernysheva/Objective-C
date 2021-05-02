@@ -8,6 +8,7 @@
 
 #import "DetailPhotoVC.h"
 #import "PhotosVC.h"
+#import "PhotosLoadImage.h"
 
 @interface DetailPhotoVC ()
 
@@ -34,18 +35,14 @@
 }
 
 -(void) loadImage:(NSString *)imageUrl {
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        NSURL *smallImageUrl = [[NSURL alloc] initWithString: imageUrl];
-        NSData *urlImageData = [[NSData alloc]initWithContentsOfURL:smallImageUrl];
-        UIImage *bigImage = [[UIImage alloc]initWithData:urlImageData];
+    PhotosLoadImage *photosLoadImage = [[PhotosLoadImage alloc]init];
+    [photosLoadImage loadImage: imageUrl :^(UIImage * image) {
         dispatch_async(dispatch_get_main_queue(), ^(void){
             //Run UI Updates
-            _photoView.image = bigImage;
+            _photoView.image = image;
             [_activityIndicator stopAnimating];
         });
-    });
+    }];
+    
 }
-
-
-
 @end

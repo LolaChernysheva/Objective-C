@@ -14,23 +14,26 @@
 #import "Hottags.h"
 #import "Photos.h"
 #import "PhotoCellModel.h"
+#import "MostFrequentlyTagsFetchData.h"
 
 #define API_URL @"https://www.flickr.com/services/rest/"
 #define API_KEY @"45420ba866f533cd68d2d8efe7b4645e"
 
-@interface MostFrequentlyUsedTagsVC ()
-
-@property (nonatomic, strong) NSMutableArray<TagElement *> *tagsArray;
-@property (nonatomic, strong) UITableView *tableView;
-
-@end
 
 @implementation MostFrequentlyUsedTagsVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self fetchData];
+    MostFrequentlyTagsFetchData *mostFrequentlyTagsFetchData = [[MostFrequentlyTagsFetchData alloc]init];
+    [mostFrequentlyTagsFetchData fetchData:^(Tags * result) {
+        self.tagsArray = result.hottags.tag.tagElements;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+        
+    }];
+    
     _tagsArray = [[NSMutableArray<TagElement *> alloc]init];
     UITableView *tagsListTableView = [[UITableView alloc] init];
     tagsListTableView.translatesAutoresizingMaskIntoConstraints = false;
@@ -60,7 +63,6 @@
     return cell;
 }
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSInteger indexRow = indexPath.row;
@@ -70,50 +72,5 @@
     
     [self.navigationController pushViewController: photosVC animated: YES];
 }
-
--(void)fetchData {
-    
-    NSURLSessionConfiguration *defaultSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultSessionConfiguration];
-    
-    // Set URL Query Items
-    NSURLComponents *urlComponents = [[NSURLComponents alloc]initWithString: API_URL];
-    NSURLQueryItem *gueryItemMethod = [[NSURLQueryItem alloc]initWithName:@"method" value:@"flickr.tags.getHotList"];
-    NSURLQueryItem *gueryItemFormat = [[NSURLQueryItem alloc]initWithName:@"format" value:@"json"];
-    NSURLQueryItem *querryItemNojsoncallback = [[NSURLQueryItem alloc]initWithName:@"nojsoncallback" value:@"1"];
-    NSURLQueryItem *querryItemCount = [[NSURLQueryItem alloc]initWithName:@"count" value:@"10"];
-    NSURLQueryItem *querryItemApiKey = [[NSURLQueryItem alloc]initWithName:@"api_key" value: API_KEY];
-    
-    NSArray<NSURLQueryItem *> *queryItems = @[
-        gueryItemMethod,
-        gueryItemFormat,
-        querryItemNojsoncallback,
-        querryItemCount,
-        querryItemApiKey
-    ];
-    urlComponents.queryItems = queryItems;
-    
-    // Setup the request with URL
-    NSURL *url = urlComponents.URL;
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
-    
-    // Convert GET string parameters to data using UTF8 Encoding
-    [urlRequest setHTTPMethod:@"GET"];
-    
-    // Create dataTask
-    NSURLSessionDataTask *dataTask = [defaultSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        
-        NSDictionary *results = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-        Tags *tags = [[Tags alloc]initWithDictionary: results];
-        self.tagsArray = tags.hottags.tag.tagElements;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
-    }];
-    
-    // Fire the request
-    [dataTask resume];
-}
 @end
-
 

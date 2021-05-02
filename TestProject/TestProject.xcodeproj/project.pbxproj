@@ -15,6 +15,9 @@
 		D37920F62620DC6700C68A64 /* PhotoListResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = D37920F52620DC6700C68A64 /* PhotoListResponse.m */; };
 		D37920F92620DD6500C68A64 /* PhotoInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D37920F82620DD6500C68A64 /* PhotoInfoModel.m */; };
 		D38E1107261F838600EB0519 /* PhotoCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D38E1106261F838600EB0519 /* PhotoCellModel.m */; };
+		D3E922CB2639DE07004701A7 /* PhotosLoadImage.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E922CA2639DE07004701A7 /* PhotosLoadImage.m */; };
+		D3EB61EA2639CFA900ED20CB /* MostFrequentlyTagsFetchData.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EB61E92639CFA900ED20CB /* MostFrequentlyTagsFetchData.m */; };
+		D3EB61EF2639D23E00ED20CB /* PhotosFetchData.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EB61EE2639D23E00ED20CB /* PhotosFetchData.m */; };
 		D3F9A6432618685100280339 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F9A6422618685100280339 /* AppDelegate.m */; };
 		D3F9A6462618685100280339 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F9A6452618685100280339 /* SceneDelegate.m */; };
 		D3F9A64E2618685600280339 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3F9A64D2618685600280339 /* Assets.xcassets */; };
@@ -50,6 +53,12 @@
 		D37920F82620DD6500C68A64 /* PhotoInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoInfoModel.m; sourceTree = "<group>"; };
 		D38E1105261F838600EB0519 /* PhotoCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoCellModel.h; sourceTree = "<group>"; };
 		D38E1106261F838600EB0519 /* PhotoCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoCellModel.m; sourceTree = "<group>"; };
+		D3E922C92639DE07004701A7 /* PhotosLoadImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotosLoadImage.h; sourceTree = "<group>"; };
+		D3E922CA2639DE07004701A7 /* PhotosLoadImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotosLoadImage.m; sourceTree = "<group>"; };
+		D3EB61E82639CFA900ED20CB /* MostFrequentlyTagsFetchData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MostFrequentlyTagsFetchData.h; sourceTree = "<group>"; };
+		D3EB61E92639CFA900ED20CB /* MostFrequentlyTagsFetchData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MostFrequentlyTagsFetchData.m; sourceTree = "<group>"; };
+		D3EB61ED2639D23E00ED20CB /* PhotosFetchData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotosFetchData.h; sourceTree = "<group>"; };
+		D3EB61EE2639D23E00ED20CB /* PhotosFetchData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotosFetchData.m; sourceTree = "<group>"; };
 		D3F9A63E2618685100280339 /* TestProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3F9A6412618685100280339 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D3F9A6422618685100280339 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -178,6 +187,43 @@
 				D3FB6463261894D10083AAA0 /* DetailPhotoVC.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		D3EB61E62639CF6D00ED20CB /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				D3EB61EC2639D06300ED20CB /* PhotosLoadImages */,
+				D3EB61EB2639D04C00ED20CB /* PhotosFetchData */,
+				D3EB61E72639CF9A00ED20CB /* MostFrequentlyTagsFetchData */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		D3EB61E72639CF9A00ED20CB /* MostFrequentlyTagsFetchData */ = {
+			isa = PBXGroup;
+			children = (
+				D3EB61E82639CFA900ED20CB /* MostFrequentlyTagsFetchData.h */,
+				D3EB61E92639CFA900ED20CB /* MostFrequentlyTagsFetchData.m */,
+			);
+			path = MostFrequentlyTagsFetchData;
+			sourceTree = "<group>";
+		};
+		D3EB61EB2639D04C00ED20CB /* PhotosFetchData */ = {
+			isa = PBXGroup;
+			children = (
+				D3EB61ED2639D23E00ED20CB /* PhotosFetchData.h */,
+				D3EB61EE2639D23E00ED20CB /* PhotosFetchData.m */,
+			);
+			path = PhotosFetchData;
+			sourceTree = "<group>";
+		};
+		D3EB61EC2639D06300ED20CB /* PhotosLoadImages */ = {
+			isa = PBXGroup;
+			children = (
+				D3E922C92639DE07004701A7 /* PhotosLoadImage.h */,
+				D3E922CA2639DE07004701A7 /* PhotosLoadImage.m */,
+			);
+			path = PhotosLoadImages;
 			sourceTree = "<group>";
 		};
 		D3F9A6352618685100280339 = {
@@ -319,6 +365,7 @@
 		D3FB64652618993D0083AAA0 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				D3EB61E62639CF6D00ED20CB /* Requests */,
 				D3FB648E2619CD3A0083AAA0 /* DataManager.h */,
 				D3FB648F2619CD3A0083AAA0 /* DataManager.m */,
 			);
@@ -456,15 +503,18 @@
 				D3FB6461261881490083AAA0 /* PhotosVC.m in Sources */,
 				D3FB64852618F2DE0083AAA0 /* ThmData.m in Sources */,
 				D37920F62620DC6700C68A64 /* PhotoListResponse.m in Sources */,
+				D3E922CB2639DE07004701A7 /* PhotosLoadImage.m in Sources */,
 				D3F9A6432618685100280339 /* AppDelegate.m in Sources */,
 				D3FB6464261894D10083AAA0 /* DetailPhotoVC.m in Sources */,
 				D372694B261E403E00305D0C /* SizesModel.m in Sources */,
 				D3FB64892618F3110083AAA0 /* Photos.m in Sources */,
 				D3F9A6542618685600280339 /* main.m in Sources */,
+				D3EB61EF2639D23E00ED20CB /* PhotosFetchData.m in Sources */,
 				D3726937261E3B3700305D0C /* PhotoResponse.m in Sources */,
 				D3FB64812618F2760083AAA0 /* TagElement.m in Sources */,
 				D34734B4261A2B4800B1A8AC /* Tag.m in Sources */,
 				D37920F92620DD6500C68A64 /* PhotoInfoModel.m in Sources */,
+				D3EB61EA2639CFA900ED20CB /* MostFrequentlyTagsFetchData.m in Sources */,
 				D3F9A6462618685100280339 /* SceneDelegate.m in Sources */,
 				D3726930261D004200305D0C /* PhotoCollectionViewCell.m in Sources */,
 				D372693B261E3B6500305D0C /* SizeElement.m in Sources */,

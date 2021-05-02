@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PhotosVC : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property (strong, nonatomic) UICollectionView *collectionView;
-@property (nonatomic, strong) NSMutableArray<PhotoCellModel *> *photoCellModelList;
 @property (nonatomic, strong) NSString *tagName;
 
 @end
