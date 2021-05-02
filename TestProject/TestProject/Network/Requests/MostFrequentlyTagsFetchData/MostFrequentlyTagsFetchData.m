@@ -16,7 +16,7 @@
 #define API_KEY @"45420ba866f533cd68d2d8efe7b4645e"
 
 @interface MostFrequentlyTagsFetchData() {
-    void (^_completionHandler)(Tags *someParameter);
+    void (^_loadTagsCompletionHandler)(Tags *someParameter);
 }
 @end
 
@@ -57,8 +57,8 @@
         Tags *tags = [[Tags alloc]initWithDictionary: results];
         // NOTE: copying is very important if you'll call the callback asynchronously,
         // even with garbage collection!
-        _completionHandler = [handler copy];
-        _completionHandler(tags);
+        _loadTagsCompletionHandler = [handler copy];
+        _loadTagsCompletionHandler(tags);
     }];
     
     // Fire the request

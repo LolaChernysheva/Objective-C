@@ -9,8 +9,11 @@
 #import "DetailPhotoVC.h"
 #import "PhotosVC.h"
 #import "PhotosLoadImage.h"
+#import "DetailPhotoView.h"
 
 @interface DetailPhotoVC ()
+
+@property (nonatomic, strong) DetailPhotoView *detailPhotoView;
 
 @end
 
@@ -19,30 +22,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    _photoView = [[UIImageView alloc]initWithFrame: self.view.frame];
-    _photoView.contentMode = UIViewContentModeScaleAspectFit;
-    _photoView.backgroundColor = [UIColor whiteColor];
-    _activityIndicator = [[UIActivityIndicatorView alloc]initWithFrame:self.view.frame];
-    _activityIndicator.color = [UIColor blackColor];
-    [_activityIndicator startAnimating];
-    _photoView.translatesAutoresizingMaskIntoConstraints = false;
-    [self.view addSubview:_photoView];
-    [self.view addSubview:_activityIndicator];
-    [_photoView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor].active = true;
-    [_photoView.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor].active = true;
-    [_photoView.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor].active = true;
-    [_photoView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor].active = true;
+    _detailPhotoView = [[DetailPhotoView alloc]initWith:self.view];
+}
+
+-(void) resetImage {
+    self.detailPhotoView.photoView.image = nil;
 }
 
 -(void) loadImage:(NSString *)imageUrl {
+    [self.detailPhotoView.activityIndicator startAnimating];
     PhotosLoadImage *photosLoadImage = [[PhotosLoadImage alloc]init];
     [photosLoadImage loadImage: imageUrl :^(UIImage * image) {
         dispatch_async(dispatch_get_main_queue(), ^(void){
             //Run UI Updates
-            _photoView.image = image;
-            [_activityIndicator stopAnimating];
+            //self.photoView.image = image;
+            self.detailPhotoView.photoView.image = image;
+            [self.detailPhotoView.activityIndicator stopAnimating];
         });
     }];
-    
 }
 @end

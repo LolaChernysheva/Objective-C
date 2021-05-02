@@ -26,12 +26,8 @@
         [_photoImageView.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor].active = true;
         _photoImageView.backgroundColor = [UIColor lightGrayColor];
         _photoImageView.contentMode = UIViewContentModeScaleAspectFit;
-        
     }
     return self;
     
 }
-
-
-
 @end

@@ -15,7 +15,7 @@
 #define API_KEY @"45420ba866f533cd68d2d8efe7b4645e"
 
 @interface PhotosLoadImage() {
-    void (^_completionHandler)(PhotoResponse *someParameter, PhotoCellModel *model);
+    void (^_loadImagesCompletionHandler)(PhotoResponse *someParameter, PhotoCellModel *model);
     void (^_loadImageCompletionHandler)(UIImage *image);
 }
 
@@ -67,8 +67,8 @@
                    PhotoResponse *photoResponse = [[PhotoResponse alloc]initWithDictionary: results];
                    // NOTE: copying is very important if you'll call the callback asynchronously,
                    // even with garbage collection!
-                   _completionHandler = [handler copy];
-                   _completionHandler(photoResponse, photoCellModel);
+                   _loadImagesCompletionHandler = [handler copy];
+                   _loadImagesCompletionHandler(photoResponse, photoCellModel);
                    
                }];
                

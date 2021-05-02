@@ -14,7 +14,7 @@
 #define API_KEY @"45420ba866f533cd68d2d8efe7b4645e"
 
 @interface PhotosFetchData() {
-    void (^_completionHandler)(PhotoListResponse *someParameter);
+    void (^_loadPhotoListResponseCompletionHandler)(PhotoListResponse *someParameter);
 }
 @end
 
@@ -55,8 +55,8 @@
             PhotoListResponse *photoListResponse = [[PhotoListResponse alloc] initWithDictionary:results];
             // NOTE: copying is very important if you'll call the callback asynchronously,
             // even with garbage collection!
-            _completionHandler = [handler copy];
-            _completionHandler(photoListResponse);
+            _loadPhotoListResponseCompletionHandler = [handler copy];
+            _loadPhotoListResponseCompletionHandler(photoListResponse);
         }];
         
         // Fire the request

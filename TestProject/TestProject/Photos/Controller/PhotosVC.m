@@ -16,6 +16,7 @@
 #import "PhotoListResponse.h"
 #import "PhotosFetchData.h"
 #import "PhotosLoadImage.h"
+#import "PhotosView.h"
 
 #define API_URL @"https://www.flickr.com/services/rest/"
 #define API_KEY @"45420ba866f533cd68d2d8efe7b4645e"
@@ -23,16 +24,74 @@
 
 @interface PhotosVC ()
 
-@property (nonatomic, strong) UICollectionView *photoCollectionView;
+@property (nonatomic, strong) PhotosView *photosCollectionView;
+@property (nonatomic, strong) DetailPhotoVC *detailPhotoVC;
 @property (nonatomic, strong) NSMutableArray<PhotoCellModel *> *photoCellModelList;
+
+- (void)loadData;
 
 @end
 
 @implementation PhotosVC
 
 - (void)viewDidLoad {
-    _photoCellModelList = [[NSMutableArray alloc]init];
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+     _photosCollectionView = [[PhotosView alloc]initWith:self.view];
+     _photosCollectionView.delegate = self;
+     _photosCollectionView.dataSource = self;
+    
+    [self loadData];
+    
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return [self.photosCollectionView collectionView:collectionView layout:collectionViewLayout sizeForItemAtIndexPath:indexPath];
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return [self.photosCollectionView collectionView:collectionView layout:collectionViewLayout insetForSectionAtIndex:section];
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return [self.photosCollectionView collectionView:collectionView layout:collectionViewLayout minimumLineSpacingForSectionAtIndex:section];
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return [self.photosCollectionView collectionView:collectionView layout:collectionViewLayout minimumInteritemSpacingForSectionAtIndex:section];
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return _photoCellModelList.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    PhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"CollectionViewCellIdentifier" forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor whiteColor];
+    PhotoCellModel *photoCellModel = _photoCellModelList[indexPath.row];
+    cell.photoImageView.image = photoCellModel.imaage;
+    return cell;
+}
+
+/*
+ При клике на ячейку проверяем подгрузилось ли изображение, если да, то переходим на детальный экран иначе - игнорируем
+ */
+- (void)collectionView:(UITableView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    PhotoCellModel *photoCellModel = _photoCellModelList[indexPath.row];
+    NSString *imageUrl = [photoCellModel.sizeElementList lastObject].source;
+    if (imageUrl) {
+        if (!self.detailPhotoVC) {
+            self.detailPhotoVC = [[DetailPhotoVC alloc] init];
+        }
+        [self.detailPhotoVC resetImage];
+        [self.detailPhotoVC loadImage:imageUrl];
+        [self.navigationController pushViewController: self.detailPhotoVC animated: YES];
+    }
+}
+
+- (void)loadData {
+    _photoCellModelList = [[NSMutableArray alloc]init];
     PhotosFetchData *photosFetchData = [[PhotosFetchData alloc]init];
     // делаес запрос на список фото(списка url) по тегу
     [photosFetchData fetchData: _tagName
@@ -46,14 +105,14 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.collectionView reloadData];
+            [self.photosCollectionView reloadData];
         });
         
         PhotosLoadImage *photoLoadImage = [[PhotosLoadImage alloc]init];
         // передаем на загрузку несколько фото, но функция обратного вызова будет вызвана по одному разу для каждой
         // полученной из сети фотографии
-        [photoLoadImage loadImages: _photoCellModelList :^(PhotoResponse *result, PhotoCellModel *photoCellModel)
-        {
+        [photoLoadImage loadImages: self.photoCellModelList :^(PhotoResponse *result, PhotoCellModel *photoCellModel)
+         {
             // для запрошеного идентификатора изображений нам вернули список урлов с размерами, от маленького
             // изображения до большого
             NSMutableArray<SizeElement *> *sizesArray = result.sizes.size;
@@ -63,7 +122,7 @@
             NSData *urlImageData = [[NSData alloc]initWithContentsOfURL:smallImageUrl];
             UIImage *smallImage = [[UIImage alloc]initWithData:urlImageData];
             
-           // получаем индекс по модели, для которой получили фотографию
+            // получаем индекс по модели, для которой получили фотографию
             NSInteger index =  [self.photoCellModelList indexOfObject:photoCellModel];
             
             // обновляем изображение для модели
@@ -79,74 +138,12 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 // обновляем только одну ячейку т.к в функцию передается только одна фотография
-                [self.collectionView reloadItemsAtIndexPaths:list];
+                [self.photosCollectionView reloadItemsAtIndexPaths:list];
             });
             
         }];
         
     }];
-    
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.minimumLineSpacing = 1.0;
-    layout.minimumInteritemSpacing = 1.0;
-    layout.itemSize = CGSizeMake(([UIScreen mainScreen].bounds.size.width/2)-1, ([UIScreen mainScreen].bounds.size.width/2));
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    
-    _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
-    _collectionView.backgroundColor = [UIColor whiteColor];
-    _collectionView.dataSource = self;
-    _collectionView.delegate = self;
-    [_collectionView registerClass:[PhotoCollectionViewCell class] forCellWithReuseIdentifier:@"CollectionViewCellIdentifier"];
-    _photoCollectionView = _collectionView;    _collectionView.translatesAutoresizingMaskIntoConstraints = false;
-    [self.view addSubview:_collectionView];
-    [_collectionView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor].active = true;
-    [_collectionView.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor].active = true;
-    [_collectionView.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor].active = true;
-    [_collectionView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor].active = true;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat itemsPerRow = 2;
-    CGFloat paddingWidth = 20 * (itemsPerRow + 1);
-    CGFloat availableWidth = collectionView.frame.size.width - paddingWidth;
-    CGFloat widthPerItem = availableWidth / itemsPerRow;
-    return CGSizeMake(widthPerItem, widthPerItem);
-}
-
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(20, 20, 20, 20);
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 20;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return 20;
-}
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _photoCellModelList.count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    PhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"CollectionViewCellIdentifier" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor whiteColor];
-    PhotoCellModel *photoCellModel = _photoCellModelList[indexPath.row];
-    cell.photoImageView.image = photoCellModel.imaage;
-    return cell;
-}
-/*
- При клике на ячейку проверяем подгрузилось ли изображение, если да, то переходим на детальный экран иначе - игнорируем
- */
-- (void)collectionView:(UITableView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    PhotoCellModel *photoCellModel = _photoCellModelList[indexPath.row];
-    NSString *imageUrl = [photoCellModel.sizeElementList lastObject].source;
-    if (imageUrl) {
-        DetailPhotoVC *detailPhotoVC = [[DetailPhotoVC alloc] init];
-        [detailPhotoVC loadImage:imageUrl];
-        [self.navigationController pushViewController: detailPhotoVC animated: YES];
-    }
 }
 
 @end

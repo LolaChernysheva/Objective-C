@@ -11,8 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PhotosVC : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
-@property (strong, nonatomic) UICollectionView *collectionView;
+@interface PhotosVC : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) NSString *tagName;
 
 @end

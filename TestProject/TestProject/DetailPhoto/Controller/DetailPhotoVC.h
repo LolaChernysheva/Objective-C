@@ -12,8 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DetailPhotoVC : UIViewController
 
-@property (nonatomic, strong) UIImageView *photoView;
-@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+-(void) resetImage;
 -(void) loadImage:(NSString *)imageUrl;
 
 @end
