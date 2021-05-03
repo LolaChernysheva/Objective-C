@@ -172,16 +172,8 @@
 			children = (
 				D38E1104261F833000EB0519 /* Controller */,
 				D38E1103261F832900EB0519 /* View */,
-				D38E1102261F832200EB0519 /* Model */,
 			);
 			path = DetailPhoto;
-			sourceTree = "<group>";
-		};
-		D38E1102261F832200EB0519 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		D38E1103261F832900EB0519 /* View */ = {
