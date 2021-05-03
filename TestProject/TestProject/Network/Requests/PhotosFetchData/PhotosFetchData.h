@@ -13,8 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PhotosFetchData : NSObject
 
--(void)fetchData :(NSString *)tagName
-                 :(void(^)(PhotoListResponse *))handler;
+- (void) getPhotoListByTag :(NSString *) tagName
+                           :(void(^)(PhotoListResponse *))handler;
+
+- (void) getPhotoListBySearch:(NSString *) searchText
+                             :(void(^)(PhotoListResponse *))handler;
 
 @end
 

@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MostFrequentlyUsedTagsVC : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface MostFrequentlyUsedTagsVC : UIViewController<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 @property (nonatomic, strong, readwrite) NSMutableArray<TagElement *> *tagsArray;
 @property (nonatomic, strong, readwrite) UITableView *tableView;
 

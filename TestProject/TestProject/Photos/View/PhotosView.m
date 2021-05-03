@@ -12,7 +12,6 @@
 @interface PhotosView ()
 @property (nonatomic, strong) UICollectionViewFlowLayout *layout;
 
-
 @end
 
 @implementation PhotosView
