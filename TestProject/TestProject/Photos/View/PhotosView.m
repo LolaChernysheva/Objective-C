@@ -10,6 +10,7 @@
 #import "PhotoCollectionViewCell.h"
 
 @interface PhotosView ()
+
 @property (nonatomic, strong) UICollectionViewFlowLayout *layout;
 
 @end

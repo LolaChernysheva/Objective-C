@@ -28,8 +28,6 @@
 @property (nonatomic, strong) DetailPhotoVC *detailPhotoVC;
 @property (nonatomic, strong) NSMutableArray<PhotoCellModel *> *photoCellModelList;
 
-- (void)loadData;
-
 @end
 
 @implementation PhotosVC
@@ -41,9 +39,6 @@
     _photosCollectionView = [[PhotosView alloc]initWith:self.view];
     _photosCollectionView.delegate = self;
     _photosCollectionView.dataSource = self;
-    
-    //[self loadData];
-    
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -88,62 +83,6 @@
         [self.detailPhotoVC loadImage:imageUrl];
         [self.navigationController pushViewController: self.detailPhotoVC animated: YES];
     }
-}
-
-- (void)loadData {
-    _photoCellModelList = [[NSMutableArray alloc]init];
-    PhotosFetchData *photosFetchData = [[PhotosFetchData alloc]init];
-    // делаес запрос на список фото(списка url) по тегу
-    [photosFetchData getPhotoListByTag: _tagName
-                                      :^(PhotoListResponse * result) {
-        NSArray<Photo *> *photoList = result.photos.photo;
-        
-        for (Photo *photo in photoList) {
-            PhotoCellModel *photoCellModel = [[PhotoCellModel alloc]init];
-            photoCellModel.identifier = photo.identifier;
-            [self.photoCellModelList addObject:photoCellModel];
-        }
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.photosCollectionView reloadData];
-        });
-        
-        PhotosLoadImage *photoLoadImage = [[PhotosLoadImage alloc]init];
-        // передаем на загрузку несколько фото, но функция обратного вызова будет вызвана по одному разу для каждой
-        // полученной из сети фотографии
-        [photoLoadImage loadImages: self.photoCellModelList :^(PhotoResponse *result, PhotoCellModel *photoCellModel)
-         {
-            // для запрошеного идентификатора изображений нам вернули список урлов с размерами, от маленького
-            // изображения до большого
-            NSMutableArray<SizeElement *> *sizesArray = result.sizes.size;
-            
-            // Выбираем маленькое изображение и получаем по нему данные
-            NSURL *smallImageUrl = [[NSURL alloc] initWithString: sizesArray[1].source];
-            NSData *urlImageData = [[NSData alloc]initWithContentsOfURL:smallImageUrl];
-            UIImage *smallImage = [[UIImage alloc]initWithData:urlImageData];
-            
-            // получаем индекс по модели, для которой получили фотографию
-            NSInteger index =  [self.photoCellModelList indexOfObject:photoCellModel];
-            
-            // обновляем изображение для модели
-            photoCellModel.imaage = smallImage;
-            photoCellModel.sizeElementList = sizesArray;
-            //self.photoCellModelList[index] = photoCellModel;
-            
-            // формируем indexPath по которому будем обновлять ячейчку в таблице, т.к мы не используем секции и
-            // представление данных у нас линейное, нам достаточно получить индекс элемента
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-            NSMutableArray<NSIndexPath *> *list = [[NSMutableArray alloc]init];
-            [list addObject:indexPath];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                // обновляем только одну ячейку т.к в функцию передается только одна фотография
-                [self.photosCollectionView reloadItemsAtIndexPaths:list];
-            });
-            
-        }];
-        
-    }];
 }
 
 - (void)loadPhotos :(PhotoListResponse *) result {

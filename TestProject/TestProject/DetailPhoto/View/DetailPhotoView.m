@@ -27,6 +27,7 @@
     
     _activityIndicator = [[UIActivityIndicatorView alloc]init];
     _activityIndicator.color = [UIColor blackColor];
+    [_activityIndicator startAnimating];
     
     _photoView.translatesAutoresizingMaskIntoConstraints = false;
     _activityIndicator.translatesAutoresizingMaskIntoConstraints = false;

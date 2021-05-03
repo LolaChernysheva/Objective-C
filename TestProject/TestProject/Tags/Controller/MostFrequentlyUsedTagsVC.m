@@ -16,33 +16,31 @@
 #import "PhotoCellModel.h"
 #import "MostFrequentlyTagsFetchData.h"
 #import "PhotosFetchData.h"
+#import "TagsView.h"
 
 #define API_URL @"https://www.flickr.com/services/rest/"
 #define API_KEY @"45420ba866f533cd68d2d8efe7b4645e"
 
 @interface MostFrequentlyUsedTagsVC ()
 
-@property (nonatomic, strong) UISearchController *searchController;
-@property (nonatomic) BOOL isSearchBarHidden;
-@property (nonatomic, strong) NSLayoutConstraint *tableWithoutSearchBarConstraint;
-@property (nonatomic, strong) NSLayoutConstraint *tableWithSearchBarConstraint;
+@property (nonatomic, strong) TagsView *tagsView;
 
 - (void) searchBarButtonTapped : (NSObject *)sender;
-- (void) activateTableTopAnchor;
+- (void) loadData;
 
 @end
 
 @implementation MostFrequentlyUsedTagsVC
 
+// MARK: - Live cycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _isSearchBarHidden = true;
-    _searchController = [[UISearchController alloc]initWithSearchResultsController: nil];
-    _searchController.searchBar.placeholder = NSLocalizedString(@"search", @"");
-    _searchController.searchBar.delegate = self;
     
-    self.navigationItem.searchController = self.searchController;
-    [_searchController.searchBar setHidden:_isSearchBarHidden];
+    _tagsView = [[TagsView alloc]initWith:self.view];
+    _tagsView.searchController.searchBar.delegate = self;
+    _tagsView.dataSource = self;
+    _tagsView.delegate = self;
     
     UIBarButtonItem *searchBarButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem
                                         :UIBarButtonSystemItemSearch target
@@ -50,37 +48,26 @@
                                         : @selector(searchBarButtonTapped:)];
     self.navigationItem.rightBarButtonItem = searchBarButton;
     
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    [self loadData];
+}
+
+// MARK: - Network
+
+- (void) loadData {
     MostFrequentlyTagsFetchData *mostFrequentlyTagsFetchData = [[MostFrequentlyTagsFetchData alloc]init];
     [mostFrequentlyTagsFetchData fetchData:^(Tags * result) {
         self.tagsArray = result.hottags.tag.tagElements;
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
+            [self.tagsView reloadData];
         });
         
     }];
-    
     _tagsArray = [[NSMutableArray<TagElement *> alloc]init];
-    UITableView *tagsListTableView = [[UITableView alloc] init];
-    tagsListTableView.translatesAutoresizingMaskIntoConstraints = false;
-    
-    tagsListTableView.dataSource = self;
-    tagsListTableView.delegate = self;
-    _tableView = tagsListTableView;
-    [self.view addSubview:tagsListTableView];
-    self.view.backgroundColor = [UIColor whiteColor];
-    
-    _tableWithoutSearchBarConstraint = [tagsListTableView.topAnchor constraintEqualToAnchor:self.view.topAnchor constant: -30];
-    _tableWithSearchBarConstraint = [tagsListTableView.topAnchor constraintEqualToAnchor:self.view.topAnchor];
-    [self activateTableTopAnchor];
-    [tagsListTableView.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor].active = true;
-    [tagsListTableView.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor].active = true;
-    [tagsListTableView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor].active = true;
 }
 
-- (void) activateTableTopAnchor {
-    _tableWithoutSearchBarConstraint.active = _isSearchBarHidden;
-    _tableWithSearchBarConstraint.active = !_isSearchBarHidden;
-}
+// MARK: - Table view data source & delegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
@@ -106,9 +93,13 @@
         [photosVC loadPhotos:photoListResponse];
     }];
     
-    [self.navigationController pushViewController: photosVC animated: YES];
+    [self.navigationController pushViewController: photosVC animated: true];
+    
+    [self.tagsView deselectRowAtIndexPath:indexPath animated: false];
 }
+
 // MARK: - UISearchBarDelegate
+
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     if (searchBar.text) {
         PhotosVC *photosVC = [[PhotosVC alloc] init];
@@ -117,14 +108,16 @@
             [photosVC loadPhotos:photoListResponse];
         }];
         
-        [self.navigationController pushViewController: photosVC animated: YES];
+        [_tagsView searhBarHide];
+        
+        [self.navigationController pushViewController: photosVC animated: true];
     }
 }
 
+// MARK: - Actions
+
 - (void) searchBarButtonTapped : (NSObject *)sender {
-    _isSearchBarHidden = !_isSearchBarHidden;
-    [_searchController.searchBar setHidden:_isSearchBarHidden];
-    [self activateTableTopAnchor];
+    [_tagsView searhBarToggle];
 }
 @end
 
